@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dapurtani</title>
+
+    <!-- icon Dapurtani -->
+    <link href="<?= base_url(); ?>assets/img/logoicon.png" rel="icon" type="image/x-icon">
+
+    <!-- Bootstrap css cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- font family cdn -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+
+    <link href="<?= base_url(); ?>assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+    <!-- scroll reveal cdn -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/css/sidebar.css" rel="stylesheet">
+  </head>
+
+<body id="header" onload="setInterval('reloadwaktu()');">
+
+
+    <!-- Navigation atas -->
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- navbar brand -->
+        <a class="navbar-brand" href="<?= base_url(); ?>home">
+          <img class="logo" src="<?= base_url(); ?>assets/img/logo.png" alt="logo">
+        </a>
+        <!-- navbar toggle -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- navbar menu -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <?php if ($this->session->userdata('user_login')) { ?>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/list_sayur"> Beli Sayur</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#belilauk"> Beli Lauk</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#pengguna"> Cara Pemasanan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/transaksi">History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="hubungi-kami.html"> Hubungi Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tentang-kami.html"> Tentang Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/logout">Keluar</a>
+              </li>
+                <?php } else { ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="javascript::" data-toggle="modal" data-target="#modalMasuk"><i class="fa fa-sign-in"></i> Masuk</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/registrasi"><i class="fa fa-briefcase"></i> Daftar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#tentang">Tentang Kami</a>
+                  </li >
+                  <li class="nav-item">
+                    <a class="nav-link" href="hubungi-kami.html">Hubungi Kami</a>
+                  </li>
+        <?php } ?>
+
+          </ul>
+        </div>
+
+          <form class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+            <input type="text" class="form-control form-control-sm pencarian" type="search" placeholder="Cari..." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+            <button class="btn btn-outline-success btn-sm my-sm-0" type="submit">
+              <i class="fa fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <nav class="navbar fixed-bottom navbar-bottom sidebarNavigation" data-sidebarClass="navbar-light bg-light">
+      <div class="container">
+      <div class="nav navbar-nav navbar-left">
+          <p class="harga"><?php
+          if ($this->cart->total() > 0) {
+            echo 'Rp. '.number_format($this->cart->total(), 0, ',', '.');
+          } else {
+            echo 'Rp. 0';
+          }
+           ?>
+         </p>
+       </div>
+
+       <div class="garis-vertical"></div>
+       <div class="nav navbar-nav navbar-right box-keranjang">
+       <div class="keranjang">
+         <button class="btn btn-success keranjang-icon leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+           <img src="<?= base_url(); ?>assets/img/keranjang.png" alt="">&nbsp;&nbsp;<?php echo $this->cart->total_items(); ?>
+         </button>
+
+         <div class="collapse navbar-collapse">
+             <?php if ($this->session->userdata('user_login')) { ?>
+           Hai...
+           <b><?php echo $this->session->userdata('name');
+           ?></b> ... Happy Shopping
+           <?php } else { ?>
+             Hai...
+             <b></b> ... Happy Shopping
+             <?php } ?>
+           <hr class="garis-keranjang">
+           <div class="row">
+             <div class="col-6 col-sm- col-lg-6 col-xl-6 pengantaran">
+               Jam Pengantaran :
+               <br>
+               <b>07.00 - 10.00</b>
+             </div>
+             <div class="col-6 col-sm-6 col-lg-6 col-xl-6 pengiriman">
+               Tanggal Pengiriman
+               <br>
+               <b><span id="getwaktupengiriman1"></span></b>
+             </div>
+           </div>
+
+           <hr class="garis-keranjang">
+           <?php
+             foreach($this->cart->contents() as $key) :
+               ?>
+           <div class="row">
+             <div class="col-3 col-sm-4 col-lg-4 col-xl-4 gambar-sayur">
+             <img src="<?= base_url(); ?>assets/upload/<?= $key['picture']; ?>" alt="">
+             </div>
+             <div class="col-4 col-sm-4 col-lg-4 col-xl-4 detail-sayur">
+               <h3 class="nama-sayur"><?= $key['name']; ?></h3>
+               <p class="harga-sayur">Rp. <?= number_format($key['price'], 0, ',', '.'); ?> / <sub>500 gram</sub></p>
+
+               <a class="btn btn-primary icon-ubah" type="button" name="button" data-toggle="modal" data-target="#modalUbah<?= $key['rowid']; ?>"><i class="fa fa-edit"></i></a>
+
+               <input class="input-jumlah form-control form-control-sm" type="text" name="qty" min="1" value="<?= $key['qty']; ?>" readonly>
+
+               <button class="btn btn-danger icon-hapus" type="button" name="button" data-toggle="modal" data-target="#modalHapus<?= $key['rowid']; ?>"><i class="fa fa-trash"></i></button>
+
+             </div>
+             <div class="col-4 col-sm-3 col-lg-3 col-xl-3 total-harga">
+               Total :
+               <br >
+               Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>
+             </div>
+           </div>
+       <?php endforeach; ?>
+           <form class="" action="beli.html" method="post">
+             <div class="row">
+               <div class="col-6">
+                 <p class="keterangan-harga">Total Belanja :</p>
+               </div>
+               <div class="col-6">
+                 <p class="harga"><b>Rp.</b><?= number_format($this->cart->total(), 0, ',', '.'); ?></p>
+               </div>
+             </div>
+
+             <hr class="garis-keranjang">
+             <div class="row">
+               <div class="col-6">
+                 <p class="keterangan-harga">Ongkos Kirim :</p>
+               </div>
+               <div class="col-6">
+                 <p class="harga"><?php
+                 if ($this->cart->total() > 0) {
+                   echo '<b>Rp.</b> 9000';
+                 } else {
+                   echo 'Rp. 0';
+                 }
+                 ?>
+               </div>
+             </div>
+
+             <hr class="garis-keranjang">
+             <div class="row">
+               <div class="col-6">
+                 <p class="keterangan-harga">Sub Total :</p>
+               </div>
+               <div class="col-6">
+                 <p class="harga"><?php
+                 if ($this->cart->total() > 0) {
+                   echo '<b>Rp.</b>' .number_format($this->cart->total() + 9000, 0, ',', '.');
+                 } else {
+                   echo 'Rp. 0';
+                 }
+                 ?>
+               </div>
+             </div>
+
+             <hr class="garis-keranjang">
+
+             <div class="row justify-content-center pt-4 pb-4">
+               <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
+                 <form action="kirim.php" method="post">
+                   <input type="hidden" name="iduser" id="iduser">
+                   <div class="input-group">
+                     <input type="text" name="" class="form-control form-control-sm" placeholder="Kode Voucher" required>
+                     <div class="input-group-append">
+                       <input class="btn btn-block btn-success btn-sm" type="submit" name="oke" value="Oke">
+                     </div>
+                   </div>
+                 </form>
+               </div>
+             </div>
+
+             <p class="paket">
+               Pilih paket hemat pengiriman :
+             </p>
+             <div class="row justify-content-center pb-4">
+               <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                 <div class="card">
+                   <div class="card-body text-center">
+                     <form action="kirim.php" method="post">
+                       <button class="btn btn-success btn-sm" type="button" name="button">
+                         Rp 150.000,- / bulan
+                       </button>
+                       <p class="paket">
+                         Anda bisa menghemat sampai Rp 5.000 pengiriman tiap hari selama sebulan.
+                       </p>
+                     </form>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div class="row text-center">
+               <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                 <div class="btn-masukkan">
+                   <input onclick="masukkan()" class="btn btn-beli btn-success" type="submit" value="Tambah Belanjaan">
+                   <?php if ($this->session->userdata('user_login')) { ?>
+                <a href="<?= base_url(); ?>checkout"  class="btn btn-beli btn-success">Lanjut Pembayaran</a>
+                 <?php } else { ?>
+                   <a href="javascript::" data-toggle="modal" data-target="#modalMasuk" class="btn btn-beli btn-success">Lanjut Pembayaran</a>
+                   <?php } ?>
+                 </div>
+               </div>
+             </div>
+
+           </form>
+         </div>
+
+       </div>
+       </div>
+       </nav>
+
+       <!-- untuk waktu -->
+       <div class="container-fluid" style="margin: 10px 0 0 0;">
+         <div class="row text-center justify-content-center">
+           <div class="col-lg-6">
+             <!-- tanggal pengiriman -->
+             <div class="alert alert-default" role="alert">
+               <p>
+                 <b><span id="getwaktu"></span></b>
+                 <br />
+                 Pesan sebelum jam <span class="alert-link">18.00 WITA</span> untuk pengiriman hari <span id="getharipengiriman"></span>.
+                 <br />
+                 <b>Tanggal Pengiriman</b> : <span id="getwaktupengiriman2"></span>
+               </p>
+             </div>
+             <!-- tanggal pengiriman -->
+           </div>
+         </div>
+       </div>
+             <!-- tanggal pengiriman -->
+
+       <!-- untuk waktu -->
+    <!-- bagian beli sayur -->
+    <section class="box-sayur text-center pt-4" id="belisayur">
+      <h2>Beli Sayur</h2>
+
+      <!-- untuk bagian kategori -->
+      <div class="row isi-box-kategori">
+        <div class="box-kategori">
+          <div class="box-scroll">
+
+            <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="<?=base_url(); ?>home/s_daun">
+                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt1.png" alt="">
+                  </a>
+                  <a class="nav-link" href="<?=base_url(); ?>home/s_daun">Sayur Daun</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>home/s_buah">
+                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt2.png" alt="">
+                  </a>
+                  <a class="nav-link" href="<?= base_url(); ?>home/s_buah">Sayur Buah</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>home/umbi_umbian">
+                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt3.png" alt="">
+                  </a>
+                  <a class="nav-link" href="<?= base_url(); ?>home/umbi_umbian">Umbi - umbian</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>home/buah">
+                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt5.png" alt="">
+                  </a>
+                  <a class="nav-link" href="<?= base_url(); ?>home/buah">Buah</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>">
+                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt4.png" alt="">
+                  </a>
+                  <a class="nav-link" href="<?= base_url(); ?>">Bumbu Dapur</a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      <!-- untuk bagian kategori -->
+
+      <div class="row isi-box-sayur">
+         <?php foreach($data->result() as $key) : ?>
+           <div class="col-6 col-md-6 col-sm-6 col-lg-3 col-xl-3 my-col">
+
+             <div class="work">
+                 <img class="sayur" src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>" alt="">
+                 <div class="work-bottom">
+                   <h3><?= $key->nama_sayur; ?></h3>
+
+                   <div class="row">
+                     <div class="col-sm-12">
+                       <table align="center">
+                         <tr>
+                   <td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?></td>
+                   <td align="left">/ <?= $key->satuan; ?></td>
+                 </tr>
+                 <tr>
+                   <td align="left">Sisa Stok : </td>
+                   <td align="left"> <?= $key->stock; ?></td>
+                 </tr>
+               </table>
+             </div>
+           </div>
+                 <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/add/<?= $key->id_sayur; ?>">Masukkan ke Keranjang</a>
+               </div>
+             </div>
+
+           </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+
+<br>
+
+<section class="berlangganan text-white pt-4 pb-4" id="berlangganan">
+  <div class="container">
+    <div class="row justify-content-md-center">
+
+      <div class="col-xl-9 text-center">
+        <h1 class="mb-2">Dapatkan Informasi terbaru dari kami.</h1>
+      </div>
+
+    <!-- form submit -->
+      <div class="col-xl-6">
+        <?php echo form_open('home/add_email'); ?>
+        <input type="hidden" name="iduser" id="iduser">
+        <div class="input-group">
+              <input class="form-control form-control" value="<?= set_value('email') ?>" type="email" name="email" id="email" class="form-control form-control-lg" aria-describedby="email" placeholder="Masukkan Email Anda" required>
+                <div class="input-group-append">
+              <input class="btn btn-block btn-success" type="submit" value="Submit">
+            </div>
+          </div>
+            <?php echo form_close(); ?>
+          </div>
+      </div>
+    </div>
+    <!-- form submit -->
+
+</section><!-- bagian subcribe -->
+
+<!-- Footer -->
+<footer class="footer bg-light">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <ul class="list-menu">
+          <li class="list-menu-item">
+            <a href="#">Tentang Kami</a>
+          </li>
+          <li class="list-menu-item">
+            <a href="#">Kontak</a>
+          </li>
+          <li class="list-menu-item">
+            <a href="#">Blog</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com/Dapurtani-326912511430162/?modal=admin_todo_tour" target="_blank">
+              <i class="fab fa-facebook fa-2x fa-fw"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.instagram.com/dapurtani_/?hl=id" target="_blank">
+              <i class="fab fa-instagram fa-2x fa-fw"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mr-3">
+            <a href="https://wa.me/6282191946787" target="_blank">
+              <i class="fab fa-whatsapp fa-2x fa-fw"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.youtube.com/channel/UCF9KrxrttHN6i4b-xFkcyBA" target="_blank">
+              <i class="fab fa-youtube fa-2x fa-fw"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- untuk scroll keatas -->
+  <a id="keatas" href="#header" class="btn js-scroll-trigger">
+    <i class="fa fa-chevron-up fa-fw fa-1x"></i>
+  </a>
+</footer>
+
+<div class="container text-center copyright">
+  <p class="text-muted">&copy; Dapurtani 2018 - <span id="gettahun">.</span></p>
+</div>
+<!-- Modal masuk -->
+<div class="modal fade" id="modalMasuk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="<?= base_url(); ?>home/login" method="post">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6>Login</h6>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Ingat Saya!</label>
+          </div>
+          <button type="submit" class="btn btn-danger" data-dismiss="modal">Batal</button>
+          <input type="submit" class="btn btn-success" name="submit" value="Masuk">
+      </div>
+      <div class="modal-footer">
+        <p>Belum punya akun? <a href="<?= base_url(); ?>home/registrasi">Daftar</a> </p>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- Modal masuk -->
+<?php
+  foreach($this->cart->contents() as $key) :
+    ?>
+<!-- Modal ubah -->
+<div class="modal fade" id="modalUbah<?= $key['rowid']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="<?= base_url(); ?>cart/update/<?= $key['rowid']; ?>" method="post">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6>Mengubah jumlah beli!</h6>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <input type="number" name="qty" class="form-control" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
+            <label for="qty<?= $key['rowid']; ?>">Jumlah Pesan</label>
+          </div>
+          <button type="submit" class="btn btn-danger" data-dismiss="modal">Batal</button>
+          <button type="submit" name="submit" value="Submit" class="btn btn-success">Ubah</button>
+
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+<!-- Modal ubah -->
+
+<!-- Modal hapus -->
+<div class="modal fade" id="modalHapus<?= $key['rowid']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form action="<?= base_url(); ?>cart/delete/<?= $key['rowid']; ?>" method="post">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6>Konfirmasi Hapus!</h6>
+      </div>
+      <div class="modal-body">
+        Apakah Anda Yakin ingin Menghapus Barang ini dari Keranjang Belanjaan Anda?
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" data-dismiss="modal">Tidak</button>
+        <input type="submit" name="iya" value="Iya" class="btn btn-success">
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+<!-- Modal hapus -->
+<?php endforeach; ?>
+<!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+<!-- popper js cdn -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+<!-- bootstrap js cdn -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<script src="<?= base_url(); ?>assets/vendor/owlcarousel/owl.carousel.js"></script>
+
+<!-- jquery-easing -->
+<script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+<!-- Pemanggilan Tanpa Scroll -->
+<script src="<?= base_url(); ?>assets/vendor/js/dinamis.js"></script>
+
+<!-- Pemanggilan Animasi -->
+<script src="<?= base_url(); ?>assets/vendor/js/animasi.js"></script>
+
+<script src="<?= base_url(); ?>assets/vendor/js/carousel.js"></script>
+
+<!-- Pemanggilan Tanggal -->
+<script src="<?= base_url(); ?>assets/vendor/js/tanggal1.js"></script>
+
+<script src="<?= base_url(); ?>assets/vendor/js/sidebar.js"></script>
+
+<script type="text/javascript">
+
+  function masukkan() {
+    alert('Mohon Maaf fitur ini dalam tahap pengembangan !');
+  }
+
+</script>
+
+</body>
+</html>

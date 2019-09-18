@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dapurtani</title>
+
+    <!-- icon Dapurtani -->
+    <link href="<?= base_url(); ?>assets/img/logoicon.png" rel="icon" type="image/x-icon">
+
+    <!-- Bootstrap css cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- font family cdn -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom fonts for this template -->
+    <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+
+    <!-- scroll reveal cdn -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
+
+  </head>
+
+  <body id="header">
+
+    <!-- Navigation atas -->
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- navbar brand -->
+        <a class="navbar-brand" href="<?= base_url(); ?>home">
+          <img class="logo" src="<?= base_url(); ?>assets/img/logo.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="javascript::" data-toggle="modal" data-target="#modalMasuk"><i class="fa fa-sign-in"></i> Masuk</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="tentang-kami.html">Tentang Kami</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="hubungi-kami.html">Hubungi Kami</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      </nav>
+
+
+
+    <section>
+
+      <div class="container">
+
+        <div class="row justify-content-md-center pb-4 pt-4">
+          <div class="col-lg-6 col-sm-6 col-md-6">
+
+            <div class="card">
+              <div class="card-header text-center">
+                <i class="fa fa-user fa-2x fa-fw"></i>
+                <h3 class="card-title">Buat Akun</h3>
+              </div>
+              <div class="card-body">
+              <?= validation_errors('<p style="color:red">', '</p>'); ?>
+              <form class="" action="<?= base_url(); ?>home/registrasi" method="post">
+                <div class="form-group">
+                  <input type="email" class="form-control" id="fullname" name="nama1" aria-describedby="emailHelp" placeholder="Nama Lengkap" value="<?= $nama1; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label>Kategori Pelanggan</label>
+                  <br />
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input detail" type="radio" name="ktg_pelanggan" id="ind" value="individu" <?php if ($ktg_pelanggan == 'individu') { echo 'checked'; } ?> required>
+                    <label class="form-check-label" for="ind">Individu</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input detail" type="radio" name="ktg_pelanggan" id="bis" value="bisnis" <?php if ($ktg_pelanggan == 'bisnis') { echo 'checked'; } ?> required>
+                    <label class="form-check-label" for="bis">Bisnis</label>
+                  </div>
+                </div>
+                <!-- form untuk kategori -->
+                <div id="form-input">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="ktg_pelanggan" name="ktg_pelanggan" placeholder="Nama Instansi / Perusahaan" value="<?= $ktg_pelanggan; ?>" required>
+                  </div>
+                </div>
+                <!-- form untuk kategori -->
+                <div class="form-group">
+                  <input type="email" class="form-control" id="username" name="user" aria-describedby="emailHelp" placeholder="Username" value="<?= $user; ?>" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<?= $email; ?>" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="password" name="pass1" aria-describedby="emailHelp" placeholder="Kata Sandi" value="" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="password" name="pass2" aria-describedby="emailHelp" placeholder="Konfirmasi Kata Sandi" value="" required>
+                </div>
+                          <div class="form-group">
+                          <label>Jenis Kelamin</label>
+                          <br>
+                          <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="jk" id="lk" value="L" <?php if ($jk == 'L') { echo 'checked'; } ?> required>
+                          <label class="form-check-label" for="lk">Laki-laki</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="jk" id="pr" value="P" <?php if ($jk == 'P') { echo 'checked'; } ?> required>
+                          <label class="form-check-label" for="pr">Perempuan</label>
+                        </div>
+                        </div>
+                  <div class="form-group">
+                    <input type="number" class="form-control" id="telp" name="telp" aria-describedby="emailHelp" placeholder="Nomor Telepon" value="<?= $telp; ?>" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" value="Kota Makassar" readonly="readonly">
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control" name="alamat" id="alamat" rows="5" cols="5" placeholder="Alamat Lengkap" required><?= $alamat; ?></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="promo" id="promo" aria-describedby="emailHelp" placeholder="Promo" value="<?= $promo; ?>" required>
+                  </div>
+
+                    <button type="submit" name="submit" value="Submit" class="btn btn-success">Submit</button>
+                </form>
+
+            </div>
+            <div class="card-footer text-center">
+              <p>Sudah punya akun? <a href="masuk.html">Masuk</a> </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6">
+            <ul class="list-menu">
+              <li class="list-menu-item">
+                <a href="#">Tentang Kami</a>
+              </li>
+              <li class="list-menu-item">
+                <a href="#">Kontak</a>
+              </li>
+              <li class="list-menu-item">
+                <a href="#">Blog</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-6 text-center">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <a href="https://www.facebook.com/Dapurtani-326912511430162/?modal=admin_todo_tour" target="_blank">
+                  <i class="fab fa-facebook fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/dapurtani_/?hl=id" target="_blank">
+                  <i class="fab fa-instagram fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://wa.me/6282191946787" target="_blank">
+                  <i class="fab fa-whatsapp fa-2x fa-fw"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.youtube.com/channel/UCF9KrxrttHN6i4b-xFkcyBA" target="_blank">
+                  <i class="fab fa-youtube fa-2x fa-fw"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <a id="keatas" href="#header" class="btn js-scroll-trigger">
+        <i class="fa fa-chevron-up fa-fw fa-1x"></i>
+      </a>
+    </footer>
+
+    <div class="container text-center copyright">
+      <p class="text-muted text-copyright">&copy; Dapurtani 2018 - <span id="gettahun"></span>.</p>
+    </div>
+
+    <!-- Modal masuk -->
+    <div class="modal fade" id="modalMasuk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6>Login</h6>
+          </div>
+          <div class="modal-body">
+            <form action="<?= base_url(); ?>home/login" method="post">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Ingat Saya!</label>
+              </div>
+              <button type="submit" class="btn btn-danger" data-dismiss="modal">Batal</button>
+              <input type="submit" name="masuk" value="Masuk" class="btn btn-success">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <p>Belum punya akun? <a href="daftar.html">Daftar</a> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal masuk -->
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+
+    <!-- popper js cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- bootstrap js cdn -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Pemanggilan Tanpa Scroll -->
+    <script src="<?= base_url(); ?>assets/vendor/js/dinamis.js"></script>
+
+    <!-- Pemanggilan Animasi -->
+    <script src="<?= base_url(); ?>assets/vendor/js/animasi.js"></script>
+
+<script type="text/javascript">
+      function masukkan() {
+        alert('Mohon Maaf fitur ini dalam tahap pengembangan !');
+      }
+
+    </script>
+  </body>
+</html>
