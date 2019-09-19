@@ -37,7 +37,7 @@
     <nav class="navbar navbar-custom navbar-expand-lg sticky-top navbar-light bg-light">
       <div class="container-fluid">
         <!-- navbar brand -->
-        <a class="navbar-brand" href="<?= base_url(); ?>home">
+        <a class="navbar-brand" href="<?= base_url(); ?>home/index2">
           <img class="logo" src="<?= base_url(); ?>assets/img/logo.png" alt="logo">
         </a>
         <!-- navbar toggle -->
@@ -48,19 +48,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/list_sayur">Beli Sayur</a>
+              <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/index2"> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="lauk.html"> Beli Lauk</a>
+              <a class="nav-link" href="<?= base_url(); ?>home/hubungi"> Hubungi Kami</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#pengguna"> Cara Pemasanan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="hubungi-kami.html"> Hubungi Kami</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="tentang-kami.html"> Tentang Kami</a>
+              <a class="nav-link" href="<?= base_url(); ?>home/tentang"> Tentang Kami</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/logout">Keluar</a>
@@ -110,7 +104,7 @@
                   <div class="form-group row">
                     <label class="col-sm-8 col-form-label form-input" for="">Nama Lengkap *</label>
                     <div class="col-sm-12">
-                      <input class="form-control" type="text" name="nama" value="<?= $this->session->userdata('name');  ?>" required>
+                      <input class="form-control" type="text" name="nama" value="<?= $this->session->userdata('name');  ?>&nbsp;<?= $this->session->userdata('blkg');  ?>" required>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -131,6 +125,26 @@
                       <input class="form-control" type="text" name="" value="Sementara hanya berlaku di Kota Makassar" readonly>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <select class="form-control" name="kecamatan" id="exampleFormControlSelect1">
+                      <option>-- <?= $this->session->userdata('kecamatan'); ?> --</option>
+                      <option value="Mariso">Mariso</option>
+                      <option value="Mamajang">Mamajang</option>
+                      <option value="Tamalate">Tamalate</option>
+                      <option value="Rappocini">Rappocini</option>
+                      <option value="Makassar">Makassar</option>
+                      <option value="Ujung Pandang">Ujung Pandang</option>
+                      <option value="Wajo">Wajo</option>
+                      <option value="Bontoala">Bontoala
+                      <option value="Ujung Tanah">Ujung Tanah</option>
+                      <option value="Tallo">Tallo</option>
+                      <option value="Panakkukang">Panakkukang</option>
+                      <option value="Manggala">Manggala</option>
+                      <option value="Biring Kanaya">Biring Kanaya</option>
+                      <option value="Tamalanrea">Tamalanrea</option>
+                      </option>
+                    </select>
+                  </div>
                   <div class="form-group row">
                     <label class="col-sm-8 col-form-label form-input" for="">Alamat Lengkap *</label>
                     <div class="col-sm-12">
@@ -140,7 +154,7 @@
 
                 </div>
                     <input class="form-control" type="hidden" name="sub" value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>">
-                    <input class="form-control" type="hidden" name="total" value="Rp. <?= number_format($this->cart->total() + 150000, 0, ',', '.'); ?>" readonly>
+                    <input class="form-control" type="hidden" name="total" value="Rp. <?= number_format($this->cart->total() + 150000, 0, ',', '.'); ?>/bulan" readonly>
                   </div>
             </div>
         </div>
@@ -181,11 +195,17 @@
 
             <?php endforeach; ?>
             <td colspan="2">Subtotal</td>
-            <td colspan="2">Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td><tr>
+            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td><tr>
             <td colspan="2">Ongkir</td>
-            <td colspan="2">RP. 150.000/bulan</td><tr>
+            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RP. 150.000/bulan</td><tr>
             <td colspan="2">Total</td>
-            <td colspan="2">Rp. <?= number_format($this->cart->total() + 150000, 0, ',', '.'); ?></td></tr>
+            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total() + 150000, 0, ',', '.'); ?></td></tr>
             </tbody>
           </table>
 
@@ -256,9 +276,34 @@
                       </table>
                       <hr class="garis-bawah">
                       <p style="text-align: center; font-size: 15px;">
-                        Total pembayaran :
+                        Total pembayaran : Rp. <?= number_format($this->cart->total() + 150000, 0, ',', '.'); ?>
                         <br />
-                        <span style="color: #73C089">Rp. <?= number_format($this->cart->total() + 150000, 0, ',', '.'); ?></span>
+
+                        <?php
+                       $nominal = $this->cart->total() + 150000;
+                       $sub = substr($nominal, -2);
+                       $sub2 = substr($nominal, -1);
+
+                       $total = random_string('numeric', 2);
+                       $total2 = random_string('numeric', 1);
+
+                       if($sub==0){
+                         $hasil = $nominal + $total;
+                         echo "No Unik :<span style='color: #73C089'>".$total."<br></span>";
+                         echo "Nominal Transfer : Rp.".number_format($hasil,0,",",".");
+                       } else if($sub2==0){
+                         $hasil = $nominal + $total2;
+                         $no = substr($hasil,-2);
+                         echo "No Unik :".$no."<br>";
+                         echo "Nominal Transfer : Rp.".number_format($hasil,0,",",".");
+                       }else{
+                         echo "No Unik :".$sub."<br>";
+                         echo "Nominal Transfer : Rp.".number_format($nominal,0,",",".");
+                       }
+
+  echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&nbsp;Rp.".number_format($hasil,0,",",".")
+                        ?>
+                        <br />
                         <br />
                         <i>Transfer tepat hingga 2 digit terakhir untuk mempercepat verifikasi.</i>
                       </p>
@@ -330,7 +375,7 @@
                 </a>
               </li>
               <li class="list-inline-item mr-3">
-                <a href="https://wa.me/6282191946787" target="_blank">
+                <a href="https://wa.me/6281244065453" target="_blank">
                   <i class="fab fa-whatsapp fa-2x fa-fw"></i>
                 </a>
               </li>

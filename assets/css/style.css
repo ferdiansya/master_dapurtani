@@ -503,6 +503,22 @@ table {
 
 
 /* untuk modal status pemesanan */
+#modalStatusPemesananDiproses .modal-header {
+  text-align: center;
+  display: block;
+  color: white;
+}
+#modalStatusPemesananDiproses .pesanan-proses {
+  width: 140px;
+}
+#modalDiantar .modal-header {
+  text-align: center;
+  display: block;
+  color: white;
+}
+#modalDiantar .pesanan-proses {
+  width: 140px;
+}
 #modalStatusPemesanan .modal-header {
   text-align: center;
   display: block;

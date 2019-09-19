@@ -39,7 +39,9 @@
           } if ($sayur->status == 3) {
             echo '<label class="label-default" style="color:white; padding:3px 5px;">Umbi-umbian</label>';
           } if ($sayur->status == 4)  {
-            echo '<label class="label-danger" style="color:white; padding:3px 5px;">Buah</label>';
+            echo '<label class="label-warning" style="color:white; padding:3px 5px;">Buah</label>';
+          } if ($sayur->status == 5)  {
+            echo '<label class="label-info" style="color:white; padding:3px 5px;">Bumbu Dapur</label>';
           }
            ?>
         </td>

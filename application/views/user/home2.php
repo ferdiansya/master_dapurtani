@@ -10,63 +10,111 @@
 
     <title>Dapurtani</title>
 
-    <?php echo $css; ?>
+    <!-- icon Dapurtani -->
+    <link href="<?= base_url(); ?>assets/img/logoicon.png" rel="icon" type="image/x-icon">
+
+    <!-- Bootstrap css cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- font family cdn -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="<?= base_url(); ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+
+    <link href="<?= base_url(); ?>assets/vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>assets/vendor/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">
+
+    <link href="<?= base_url(); ?>assets/css/sidebar.css" rel="stylesheet">
+
+    <!-- scroll reveal cdn -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
     </head>
 
 
   <body id="header" onload="setInterval('reloadwaktu()');">
-    <?php if ($this->session->userdata('s_pemesanan') == 'diterima') { ?>
-      <div class="modal fade" id="modalStatusPemesanan" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h6>Status Pemesanan</h6>
-            </div>
-            <div class="modal-body">
-              Pemesanan : <b><span id="getwaktupembayaran"></span></b>
-              <div class="row text-center pt-2">
-                <div class="col-12">
-                  <img class="pesanan-proses text-center" src="<?= base_url(); ?>assets/img/iconterima.png">
-                  <h2 style="margin-bottom: 10px; color: #73C089; font-size: 25px;">Pesanan telah diterima</h2>
 
-                  <form action="<?= base_url(); ?>home/dafatr_paket" method="post">
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- navbar brand -->
+        <a class="navbar-brand" href="<?= base_url(); ?>home/index2">
+          <img class="logo" src="<?= base_url(); ?>assets/img/logo.png" alt="logo">
+        </a>
+        <!-- navbar toggle -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- navbar menu -->
 
-                    <p style="margin-bottom: 0; text-align: left;">Beri rating :</p>
-                    <div class="row justify-content-center">
-                      <div class="col-7 col-sm-5 col-md-5 col-lg-5">
-                        <div class="rating">
-                          <input type="radio" name="bintang" id="bintang1" value="5"><label for="bintang1"></label>
-                          <input type="radio" name="bintang" id="bintang2" value="4"><label for="bintang2"></label>
-                          <input type="radio" name="bintang" id="bintang3" value="3"><label for="bintang3"></label>
-                          <input type="radio" name="bintang" id="bintang4" value="2"><label for="bintang4"></label>
-                          <input type="radio" name="bintang" id="bintang5" value="1"><label for="bintang5"></label>
-                        </div>
-                      </div>
-                    </div>
-                    <input type="hidden" name="nama" value="<?= $this->session->userdata('name');  ?>&nbsp;<?= $this->session->userdata('blkg');  ?>">
-                    <input type="hidden" name="email" value="<?= $this->session->userdata('email'); ?>">
-                    <input type="hidden" name="alamat" value="<?= $this->session->userdata('alamat'); ?>">
-                    <input type="hidden" name="kecamatan" value="<?= $this->session->userdata('kecamatan'); ?>">
-                    <input type="hidden" name="telp" value="<?= $this->session->userdata('telp'); ?>">
-                    <p style="margin-bottom: 0; text-align: left;">Punya saran buat kami ?</p>
-                    <div class="form-group">
-                      <textarea class="form-control" name="komentar" rows="5" cols="5" required></textarea>
-                    </div>
-                    <input type="submit" name="submit" value="Selesai" class="btn btn-success" data-dismiss="modalStatusPemesanan">
-                  </form>
-                </div>
-              </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <?php if ($this->session->userdata('s_pemesanan') == 'diantar') { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript::" data-toggle="modal" data-target="#modalDiantar"> Status Pemesanan</a>
+            </li>
+          <?php } else if ($this->session->userdata('s_pemesanan') == 'proses') { ?>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript::" data-toggle="modal" data-target="#modalDiproses"> Status Pemesanan</a>
+            </li>
+          <?php } if ($this->session->userdata('user_login')) { ?>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/index2"> Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#pengguna"> Cara Pemesanan</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/transaksi">History</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>home/hubungi"> Hubungi Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>home/tentang"> Tentang Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/logout">Keluar</a>
+            </li>
+                <?php } else { ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="javascript::" data-toggle="modal" data-target="#modalMasuk"><i class="fa fa-sign-in"></i> Masuk</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/registrasi"><i class="fa fa-briefcase"></i> Daftar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/tentang">Tentang Kami</a>
+                  </li >
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url(); ?>home/hubungi">Hubungi Kami</a>
+                  </li>
+        <?php } ?>
+
+          </ul>
+        </div>
+          <form class="form-row my-2 my-lg-0">
+            <div class="col-lg-12">
+            <div class="input-group">
+            <input type="text" class="form-control form-control-sm pencarian" type="search" placeholder="Cari.." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-success btn-sm my-sm-0" onclick="masukkan()" type="submit">
+                <i class="fa fa-search fa-fw"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
-    <?php } ?>
-<?php echo $nav; ?>
-    <!-- Navigation atas -->
-
-
-
+          </form>
+        </div>
+    </nav>
     <nav class="navbar fixed-bottom navbar-bottom sidebarNavigation" data-sidebarClass="navbar-light bg-light">
       <div class="container">
       <div class="nav navbar-nav navbar-left">
@@ -264,9 +312,9 @@
                   <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
                     <form action="" method="post">
                       <div class="input-group">
-                        <input type="text" name="kd_voucher" id="kd_voucher" class="form-control form-control-sm" placeholder="Kode Voucher" required>
+                        <input type="text" name="" class="form-control form-control-sm" placeholder="Kode Voucher" required>
                         <div class="input-group-append">
-                          <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke">
+                          <input class="btn btn-block btn-success btn-sm" type="submit" name="oke" value="Oke">
                         </div>
                       </div>
                     </form>
@@ -291,7 +339,7 @@
                 <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
                   <form action="" method="post">
                     <div class="input-group">
-                      <input type="text" name="kd_voucher" class="form-control form-control-sm" placeholder="Kode Voucher" required>
+                      <input type="text" name="" class="form-control form-control-sm" placeholder="Kode Voucher" required>
                       <div class="input-group-append">
                         <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke">
                       </div>
@@ -334,7 +382,7 @@
               <div class="row text-center">
                 <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
                   <div class="btn-masukkan">
-                    <a href="<?= base_url(); ?>home"  class="btn btn-beli btn-default">Tambah Belanjaan</a>
+                    <a href="<?= base_url(); ?>home/index2"  class="btn btn-beli btn-default">Tambah Belanjaan</a>
                     <?php if ($this->session->userdata('user_login')) { ?>
                  <a href="<?= base_url(); ?>checkout"  class="btn btn-beli btn-success">Lanjut Pembayaran</a>
                   <?php } else { ?>
@@ -397,12 +445,12 @@
       <div class="container-fluid">
         <div class="row text-center">
           <div class="col-6 col-md-6 col-sm-6 col-lg-3 col-xl-3 my-col">
-            <a href="#belisayur" class="js-scroll-trigger">
+            <a href="#belisayur">
               <img src="<?= base_url(); ?>assets/img/dp1.png" class="icon-promo">
             </a>
           </div>
           <div class="col-6 col-md-6 col-sm-6 col-lg-3 col-xl-3 my-col">
-            <a href="<?= base_url(); ?>home/d_kebutuhan">
+            <a href="<?= base_url(); ?>home/d_kebutuhan ">
               <img src="<?= base_url(); ?>assets/img/dp2.png" class="icon-promo">
             </a>
           </div>
@@ -470,7 +518,36 @@
 
       <!-- daftar barang marketplace -->
       <div class="row isi-box-sayur">
-        <?= $content; ?>
+        <?php
+         foreach($data as $key) :
+           ?>
+            <div class="col-6 col-md-6 col-sm-6 col-lg-3 col-xl-3 my-col">
+
+              <div class="work">
+                  <img class="sayur" src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>" alt="">
+                  <div class="work-bottom">
+                    <h3><?= $key->nama_sayur; ?></h3>
+
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <table align="center">
+                          <tr>
+                    <td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?></td>
+                    <td align="left">/ <?= $key->satuan; ?></td>
+                  </tr>
+                  <tr>
+                    <td align="left">Sisa Stok : </td>
+                    <td align="left"> <?= $key->stock; ?></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+                  <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/add/<?= $key->id_sayur; ?>">Masukkan ke Keranjang</a>
+                </div>
+              </div>
+
+            </div>
+        <?php endforeach; ?>
       </div>
       <!-- daftar barang marketplace -->
             <!-- button view all -->
@@ -486,7 +563,7 @@
     <!-- begin:: dapur kebutuhan -->
     <section class="text-center" id="belilauk">
       <!-- button view all -->
-       <div class="row justify-content-center view-all">
+      <div class="row justify-content-center view-all">
         <div class="col-lg-12">        
             <img src="<?= base_url(); ?>assets/img/logo dapur warung.png" class="logo"><br>
 Dapur warung adalah tempat belanja kebutuhan dapur lainnya yang ada di warung sekitar anda<br>
@@ -559,7 +636,7 @@ Dapur warung adalah tempat belanja kebutuhan dapur lainnya yang ada di warung se
             <?php echo form_open('home/add_email'); ?>
             <input type="hidden" name="iduser" id="iduser">
             <div class="input-group">
-                  <input class="form-control form-control" value="<?= set_value('email') ?>" type="email" name="email" id="email" class="form-control form-control-lg" aria-describedby="email" placeholder="Masukkan Email Anda" required>
+                  <input class="form-control form-control" value="<?= set_value('email') ?>" type="email" name="email" class="form-control form-control-lg" aria-describedby="email" placeholder="Masukkan Email Anda" required>
                     <div class="input-group-append">
                   <input class="btn btn-block btn-success" type="submit" value="Submit">
                 </div>
@@ -746,11 +823,11 @@ Dapur warung adalah tempat belanja kebutuhan dapur lainnya yang ada di warung se
 <?php endforeach; ?>
 
 <!-- Modal status pemesanan -->
-<div class="modal fade" id="modalStatusPemesananDiproses" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalDiproses" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6>Pesanan Diproses</h6>
+        <h6>Status Pemesanan</h6>
       </div>
       <div class="modal-body">
         Pengiriman : <b><span id="getwaktupengiriman3"></span></b>
@@ -788,15 +865,48 @@ Dapur warung adalah tempat belanja kebutuhan dapur lainnya yang ada di warung se
 
 <!-- Modal status pemesanan -->
     <!-- jquery -->
-    <?php echo $js; ?>
-    <script>
+    <!-- jquery -->
+      <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <!-- popper js cdn -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- bootstrap js cdn -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <script src="<?= base_url(); ?>assets/vendor/owlcarousel/owl.carousel.js"></script>
+
+    <!-- jquery-easing -->
+    <script src="<?= base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+    <!-- Pemanggilan Tanpa Scroll -->
+    <script src="<?= base_url(); ?>assets/vendor/js/dinamis.js"></script>
+
+    <!-- Pemanggilan Animasi -->
+    <script src="<?= base_url(); ?>assets/vendor/js/animasi.js"></script>
+
+    <script src="<?= base_url(); ?>assets/vendor/js/carousel.js"></script>
+
+    <!-- Pemanggilan Tanggal -->
+    <script src="<?= base_url(); ?>assets/vendor/js/tanggal.js"></script>
+
+    <script src="<?= base_url(); ?>assets/vendor/js/sidebar.js"></script>
+
+    <script src="<?= base_url(); ?>assets/vendor/js/addordel.js"></script>
+
+    <script type="text/javascript">
+
+      function masukkan() {
+        alert('Mohon Maaf fitur ini dalam tahap pengembangan !');
+      }
+
+    </script>
+    <script type="text/javascript">
       function masukkan() {
         alert('Mohon Maaf fitur ini dalam tahap pengembangan !');
       }
     </script>
-    <script>
-      $('#modalStatusPemesanan').modal('show');
-      </script>
 
 
   </body>

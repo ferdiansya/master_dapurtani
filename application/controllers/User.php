@@ -22,7 +22,7 @@ class User extends CI_Controller {
   public function promo()
   {
     $this->cek_login();
-    $data['data'] = $this->admin->get_all('t_s_pemesanan');
+    $data['data'] = $this->admin->komentar('t_s_pemesanan');
 
     $this->template->admin('admin/manage_promo', $data);
   }
@@ -65,8 +65,10 @@ class User extends CI_Controller {
     $this->form_validation->set_rules('email', 'Email', 'required');
     $this->form_validation->set_rules('telp', 'Telp', 'required');
     $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-    $this->form_validation->set_rules('promo', 'Promo', 'required');
-    $this->form_validation->set_rules('s_pemesanan', 'S_Pemesanan', 'required');
+    $this->form_validation->set_rules('promo', 'Promo');
+    $this->form_validation->set_rules('s_pemesanan', 'S_Pemesanan');
+    $this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai');
+    $this->form_validation->set_rules('tgl_akhir', 'Tanggal Berakhir');
 
     if ($this->form_validation->run() == TRUE)
     {
@@ -78,6 +80,8 @@ class User extends CI_Controller {
         'alamat' => $this->input->post('alamat', TRUE),
         'promo' => $this->input->post('promo', TRUE),
         's_pemesanan' => $this->input->post('s_pemesanan', TRUE),
+        'tgl_mulai' => $this->input->post('tgl_mulai', TRUE),
+        'tgl_akhir' => $this->input->post('tgl_akhir', TRUE),
       );
 
       $this->admin->update('t_users', $user, array('id_user' => $id_user));
@@ -89,11 +93,11 @@ class User extends CI_Controller {
     $this->template->admin('admin/user_form', $data);
   }
 
-  public function hapus($id_s_pemesanan)
+  public function hapus($id_user)
   {
-    $where = array('id_s_pemesanan' => $id_s_pemesanan);
-    $this->admin->hapus_data($where,'t_s_pemesanan');
-    redirect('user/promo');
+    $where = array('id_user' => $id_user);
+    $this->admin->hapus_data($where,'t_users');
+    redirect('user');
   }
 
   function cek_login()

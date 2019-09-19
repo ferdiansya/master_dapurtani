@@ -15,6 +15,34 @@ class Cart extends CI_Controller {
     $this->load->view('user/cart');
 	}
 
+  public function kebutuhan()
+  {
+    if (is_numeric($this->uri->segment(3)))
+    {
+      $id = $this->uri->segment(3);
+      $get = $this->app->get_where('t_d_kebutuhan', array('id_d_kebutuhan' => $id))->row();
+
+      $data = array(
+        'id' => $get->id_d_kebutuhan,
+        'name' => $get->nm_barang,
+        'price' => $get->harga,
+        'weight' => $get->satuan,
+        'picture' => $get->gambar,
+        'stock' => $get->stock,
+        'ab' => 1,
+        'qty' => 1
+      );
+
+      $this->cart->insert($data);
+
+      echo '<script type="text/javascript">window.history.go(-1);</script>';
+
+    } else {
+      redirect('home');
+    }
+  }
+
+
   public function add()
   {
     if (is_numeric($this->uri->segment(3)))
@@ -30,6 +58,7 @@ class Cart extends CI_Controller {
         'weight' => $get->satuan,
         'picture' => $get->gambar,
         'stock' => $get->stock,
+        'ab' => 1,
         'qty' => 1
       );
 
@@ -59,13 +88,13 @@ class Cart extends CI_Controller {
 
            $this->cart->update($data);
 
-        redirect('home');
+        redirect('home/index2');
         } else {
-          $this->template->user('user/index');
+          $this->template->user('user/index2');
         }
 
      } else {
-        redirect('home');
+        redirect('home/index2');
      }
 
   }
@@ -79,9 +108,9 @@ class Cart extends CI_Controller {
 
         $this->cart->remove($rowid);
 
-        redirect('home');
+        redirect('home/index2');
      } else {
-        redirect('home');
+        redirect('home/index2');
      }
   }
 }

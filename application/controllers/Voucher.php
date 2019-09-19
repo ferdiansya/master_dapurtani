@@ -20,17 +20,16 @@ class Voucher extends CI_Controller {
     //echo password_hash('admin', PASSWORD_DEFAULT, ['cost' => 10]);
     if ($this->input->post('submit') == 'Oke')
     {
-      $user = $this->input->post('kd_voucher', TRUE);
+      $user = $this->input->post('kd_voucher', FALSE);
 
       $cek =  $this->admin->get_where('t_voucher', array('kd_voucher' => $user));
 
-      if ($cek->num_rows() > 0) {
-        $data = $cek->row();
+
 
         $this->load->view('user/voucher');
         } else {
         echo '<script type="text/javascript">alert("Kode Voucher tidak dikenali");window.location.replace("'.base_url('home').'")</script>';
-    }
+
       }
 
 	}

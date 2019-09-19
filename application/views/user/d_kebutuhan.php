@@ -79,10 +79,10 @@
                     <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/registrasi"><i class="fa fa-briefcase"></i> Daftar</a>
                   </li>
                   <li class="nav-item">
-                  	<a class="nav-link" href="<?= base_url(); ?>home/hubungi"> Hubungi Kami</a>
-                  </li>
+                    <a class="nav-link js-scroll-trigger" href="#tentang">Tentang Kami</a>
+                  </li >
                   <li class="nav-item">
-                  	<a class="nav-link" href="<?= base_url(); ?>home/tentang"> Tentang Kami</a>
+                    <a class="nav-link" href="hubungi-kami.html">Hubungi Kami</a>
                   </li>
         <?php } ?>
 
@@ -124,97 +124,66 @@
            <img src="<?= base_url(); ?>assets/img/keranjang.png" alt="">&nbsp;&nbsp;<?php echo $this->cart->total_items(); ?>
          </button>
 
-       <div class="collapse navbar-collapse">
-         <?php if ($this->session->userdata('user_login')) { ?>
-       Hai...
-       <b><?php echo $this->session->userdata('name');
-       ?></b> ... Happy Shopping
-       <?php } else { ?>
+
+         <div class="collapse navbar-collapse">
+           <?php if ($this->session->userdata('user_login')) { ?>
          Hai...
-         <b></b> ... Happy Shopping
-         <?php } ?>
-         <hr class="garis-keranjang">
-         <div class="row">
-           <div class="col-6 col-sm- col-lg-6 col-xl-6 pengantaran">
-             Jam Pengantaran :
-             <br>
-             <b>07.00 - 10.00</b>
-           </div>
-           <div class="col-6 col-sm-6 col-lg-6 col-xl-6 pengiriman">
-             Tanggal Pengiriman
-             <br>
-             <b><span id="getwaktupengiriman1"></span></b>
-           </div>
-         </div>
-
-         <hr class="garis-keranjang">
-         <?php
-           foreach($this->cart->contents() as $key) :
-             ?>
-         <div class="row control-group">
-           <div class="col-3 col-sm-4 col-lg-4 col-xl-4 gambar-sayur">
-           <img src="<?= base_url(); ?>assets/upload/<?= $key['picture']; ?>" alt="">
-           </div>
-           <div class="col-4 col-sm-4 col-lg-4 col-xl-4 detail-sayur">
-             <h3 class="nama-sayur"><?= $key['name']; ?></h3>
-             <p class="harga-sayur">Rp. <?= number_format($key['price'], 0, ',', '.'); ?> / <sub>500 gram</sub></p>
-
-             <button class="btn btn-primary icon-tambah" type="button" name="button" data-toggle="modal" data-target="#modalUbah<?= $key['rowid']; ?>"><i class="fa fa-edit"></i></button>
-
-             <input class="input-jumlah form-control form-control-sm" type="text" name="qty" min="1" value="<?= $key['qty']; ?>" readonly>
-
-             <button class="btn btn-danger icon-kurang" type="button" name="button" data-toggle="modal" data-target="#modalHapus<?= $key['rowid']; ?>"><i class="fa fa-trash"></i></button>
-
-           </div>
-           <div class="col-4 col-sm-3 col-lg-3 col-xl-3 total-harga">
-             Total :
-             <br >
-             Rp. <?= number_format($key['price'] * $key['qty'], 0, ',', '.'); ?>
-           </div>
-         </div>
-<?php endforeach; ?>
- <hr class="garis-keranjang">
+         <b><?php echo $this->session->userdata('name');
+         ?></b> ... Happy Shopping
+         <?php } else { ?>
+           Hai...
+           <b></b> ... Happy Shopping
+           <?php } ?>
+           <hr class="garis-keranjang">
            <div class="row">
-             <div class="col-6">
-               <p class="keterangan-harga">Total Belanja :</p>
+             <div class="col-6 col-sm- col-lg-6 col-xl-6 pengantaran">
+               Jam Pengantaran :
+               <br>
+               <b>07.00 - 10.00</b>
              </div>
-             <div class="col-6">
-               <p class="harga"><b>Rp.</b><?= number_format($this->cart->total(), 0, ',', '.'); ?></p>
+             <div class="col-6 col-sm-6 col-lg-6 col-xl-6 pengiriman">
+               Tanggal Pengiriman
+               <br>
+               <b><span id="getwaktupengiriman1"></span></b>
              </div>
            </div>
-           <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
-             <hr class="garis-keranjang">
-             <div class="row">
-               <div class="col-6">
-                 <p class="keterangan-harga">Ongkos Kirim :</p>
-               </div>
-               <div class="col-6">
-                 <p class="harga"><?php
-                 if ($this->cart->total() > 0) {
-                   echo '<b>Rp.</b> 0';
-                 } else {
-                   echo 'Rp. 0';
-                 }
-                 ?>
-               </div>
-             </div>
 
-             <hr class="garis-keranjang">
+           <hr class="garis-keranjang">
+           <?php
+             foreach($this->cart->contents() as $key) :
+               ?>
+           <div class="row control-group">
+             <div class="col-3 col-sm-4 col-lg-4 col-xl-4 gambar-sayur">
+             <img src="<?= base_url(); ?>assets/upload/<?= $key['picture']; ?>" alt="">
+             </div>
+             <div class="col-4 col-sm-4 col-lg-4 col-xl-4 detail-sayur">
+               <h3 class="nama-sayur"><?= $key['name']; ?></h3>
+               <p class="harga-sayur">Rp. <?= number_format($key['price'], 0, ',', '.'); ?> / <sub>500 gram</sub></p>
+
+               <button class="btn btn-primary icon-tambah" type="button" name="button" data-toggle="modal" data-target="#modalUbah<?= $key['rowid']; ?>"><i class="fa fa-edit"></i></button>
+
+               <input class="input-jumlah form-control form-control-sm" type="text" name="qty" min="1" value="<?= $key['qty']; ?>" readonly>
+
+               <button class="btn btn-danger icon-kurang" type="button" name="button" data-toggle="modal" data-target="#modalHapus<?= $key['rowid']; ?>"><i class="fa fa-trash"></i></button>
+
+             </div>
+             <div class="col-4 col-sm-3 col-lg-3 col-xl-3 total-harga">
+               Total :
+               <br >
+               Rp. <?= number_format($key['price'] * $key['qty'], 0, ',', '.'); ?>
+             </div>
+           </div>
+<?php endforeach; ?>
+   <hr class="garis-keranjang">
              <div class="row">
                <div class="col-6">
-                 <p class="keterangan-harga">Sub Total :</p>
+                 <p class="keterangan-harga">Total Belanja :</p>
                </div>
                <div class="col-6">
-                 <p class="harga"><?php
-                 if ($this->cart->total() > 0) {
-                   echo '<b>Rp.</b>' .number_format($this->cart->total(), 0, ',', '.');
-                 } else {
-                   echo 'Rp. 0';
-                 }
-                 ?>
+                 <p class="harga"><b>Rp.</b><?= number_format($this->cart->total(), 0, ',', '.'); ?></p>
                </div>
              </div>
-           <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
+             <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
                <hr class="garis-keranjang">
                <div class="row">
                  <div class="col-6">
@@ -246,50 +215,109 @@
                    ?>
                  </div>
                </div>
-           <?php } else { ?>
-             <hr class="garis-keranjang">
-             <div class="row">
-               <div class="col-6">
-                 <p class="keterangan-harga">Ongkos Kirim :</p>
+             <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
+                 <hr class="garis-keranjang">
+                 <div class="row">
+                   <div class="col-6">
+                     <p class="keterangan-harga">Ongkos Kirim :</p>
+                   </div>
+                   <div class="col-6">
+                     <p class="harga"><?php
+                     if ($this->cart->total() > 0) {
+                       echo '<b>Rp.</b> 0';
+                     } else {
+                       echo 'Rp. 0';
+                     }
+                     ?>
+                   </div>
+                 </div>
+
+                 <hr class="garis-keranjang">
+                 <div class="row">
+                   <div class="col-6">
+                     <p class="keterangan-harga">Sub Total :</p>
+                   </div>
+                   <div class="col-6">
+                     <p class="harga"><?php
+                     if ($this->cart->total() > 0) {
+                       echo '<b>Rp.</b>' .number_format($this->cart->total(), 0, ',', '.');
+                     } else {
+                       echo 'Rp. 0';
+                     }
+                     ?>
+                   </div>
+                 </div>
+             <?php } else { ?>
+               <hr class="garis-keranjang">
+               <div class="row">
+                 <div class="col-6">
+                   <p class="keterangan-harga">Ongkos Kirim :</p>
+                 </div>
+                 <div class="col-6">
+                   <p class="harga"><?php
+                   if ($this->cart->total() > 0) {
+                     echo '<b>Rp.</b> 2000';
+                   } else {
+                     echo 'Rp. 0';
+                   }
+                   ?>
+                 </div>
                </div>
-               <div class="col-6">
-                 <p class="harga"><?php
-                 if ($this->cart->total() > 0) {
-                   echo '<b>Rp.</b> 2000';
-                 } else {
-                   echo 'Rp. 0';
-                 }
-                 ?>
+
+               <hr class="garis-keranjang">
+               <div class="row">
+                 <div class="col-6">
+                   <p class="keterangan-harga">Sub Total :</p>
+                 </div>
+                 <div class="col-6">
+                   <p class="harga"><?php
+                   if ($this->cart->total() > 0) {
+                     echo '<b>Rp.</b>' .number_format($this->cart->total() + 2000, 0, ',', '.');
+                   } else {
+                     echo 'Rp. 0';
+                   }
+                   ?>
+                 </div>
                </div>
-             </div>
+             <?php } ?>
+
 
              <hr class="garis-keranjang">
-             <div class="row">
-               <div class="col-6">
-                 <p class="keterangan-harga">Sub Total :</p>
-               </div>
-               <div class="col-6">
-                 <p class="harga"><?php
-                 if ($this->cart->total() > 0) {
-                   echo '<b>Rp.</b>' .number_format($this->cart->total() + 2000, 0, ',', '.');
-                 } else {
-                   echo 'Rp. 0';
-                 }
-                 ?>
-               </div>
-             </div>
-           <?php } ?>
+             <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
+               <div class="row justify-content-center pb-4">
+                 <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                   <div class="card">
+                     <div class="card-body text-center">
 
+                         <p class="paket">
+                           Anda berlangganan promo 1 bulan
+                         </p>
 
-           <hr class="garis-keranjang">
-           <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+               <div class="row justify-content-center pt-4 pb-4">
+                 <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
+                   <form action="" method="post">
+                     <div class="input-group">
+                       <input type="text" name="kd_voucher" id="kd_voucher" class="form-control form-control-sm" placeholder="Kode Voucher" required>
+                       <div class="input-group-append">
+                         <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke">
+                       </div>
+                     </div>
+                   </form>
+                 </div>
+               </div>
+           <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
              <div class="row justify-content-center pb-4">
                <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
                  <div class="card">
                    <div class="card-body text-center">
 
                        <p class="paket">
-                         Anda berlangganan promo 1 bulan
+                         Anda Berlangganan Promo 1 Minggu.
                        </p>
 
                    </div>
@@ -301,92 +329,65 @@
                <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
                  <form action="" method="post">
                    <div class="input-group">
-                     <input type="text" name="" class="form-control form-control-sm" placeholder="Kode Voucher" required>
+                     <input type="text" name="kd_voucher" class="form-control form-control-sm" placeholder="Kode Voucher" required>
                      <div class="input-group-append">
-                       <input class="btn btn-block btn-success btn-sm" type="submit" name="oke" value="Oke">
+                       <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke">
                      </div>
                    </div>
                  </form>
                </div>
              </div>
-         <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
-           <div class="row justify-content-center pb-4">
-             <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
-               <div class="card">
-                 <div class="card-body text-center">
-
-                     <p class="paket">
-                       Anda Berlangganan Promo 1 Minggu.
-                     </p>
-
-                 </div>
+           <?php } else { ?>
+             <div class="row justify-content-center pt-4 pb-4">
+               <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
+                 <form action="" method="post">
+                   <div class="input-group">
+                     <input type="text" name="kd_voucher" class="form-control form-control-sm" placeholder="Kode Voucher">
+                     <div class="input-group-append">
+                       <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke" onclick="masukkan()">
+                     </div>
+                   </div>
+                 </form>
                </div>
              </div>
-           </div>
 
-           <div class="row justify-content-center pt-4 pb-4">
-             <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
-               <form action="" method="post">
-                 <div class="input-group">
-                   <input type="text" name="" class="form-control form-control-sm" placeholder="Kode Voucher">
-                   <div class="input-group-append">
-                     <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke" onclick="masukkan()">
+             <p class="paket">
+               Pilih paket hemat pengiriman :
+             </p>
+             <div class="row justify-content-center pb-4">
+               <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                 <div class="card">
+                   <div class="card-body text-center">
+                     <form action="<?= base_url(); ?>home/daftar" method="post">
+                       <button class="btn btn-success btn-sm" type="button" name="button" onclick="masukkan()">
+                         Berlangganan pengiriman
+                       </button>
+                     </form>
                    </div>
                  </div>
-               </form>
+               </div>
              </div>
-           </div>
-         <?php } else { ?>
-           <div class="row justify-content-center pt-4 pb-4">
-             <div class="col-7 col-sm-7 col-lg-7 col-xl-7">
-               <form action="" method="post">
-                 <div class="input-group">
-                   <input type="text" name="kd_voucher" class="form-control form-control-sm" placeholder="Kode Voucher">
-                   <div class="input-group-append">
-                     <input class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="Oke" onclick="masukkan()">
-                   </div>
-                 </div>
-               </form>
-             </div>
-           </div>
+             <?php } ?>
 
-           <p class="paket">
-             Pilih paket hemat pengiriman :
-           </p>
-           <div class="row justify-content-center pb-4">
-             <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
-               <div class="card">
-                 <div class="card-body text-center">
-                   <form action="<?= base_url(); ?>home/daftar" method="post">
-                     <button class="btn btn-success btn-sm" type="button" name="button" onclick="masukkan()">
-                       Berlangganan pengiriman
-                     </button>
-                   </form>
+             <div class="row text-center">
+               <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                 <div class="btn-masukkan">
+                   <a href="<?= base_url(); ?>home/d_kebutuhan"  class="btn btn-beli btn-default">Tambah Belanjaan</a>
+                   <?php if ($this->session->userdata('user_login')) { ?>
+                <a href="<?= base_url(); ?>checkout"  class="btn btn-beli btn-success">Lanjut Pembayaran</a>
+                 <?php } else { ?>
+                   <a href="javascript::" data-toggle="modal" data-target="#modalMasuk" class="btn btn-beli btn-success">Lanjut Pembayaran</a>
+                   <?php } ?>
                  </div>
                </div>
              </div>
-           </div>
-           <?php } ?>
 
-           <div class="row text-center">
-             <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
-               <div class="btn-masukkan">
-                 <a href="<?= base_url(); ?>home/list_sayur"  class="btn btn-beli btn-default">Tambah Belanjaan</a>
-                 <?php if ($this->session->userdata('user_login')) { ?>
-              <a href="<?= base_url(); ?>checkout"  class="btn btn-beli btn-success">Lanjut Pembayaran</a>
-               <?php } else { ?>
-                 <a href="javascript::" data-toggle="modal" data-target="#modalMasuk" class="btn btn-beli btn-success">Lanjut Pembayaran</a>
-                 <?php } ?>
-               </div>
-             </div>
-           </div>
+           </form>
+         </div>
 
-         </form>
        </div>
-
      </div>
-   </div>
- </nav>
+   </nav>
 
        <!-- untuk waktu -->
        <div class="container-fluid" style="margin: 10px 0 0 0;">
@@ -411,75 +412,36 @@
        <!-- untuk waktu -->
     <!-- bagian beli sayur -->
     <section class="box-sayur text-center pt-4" id="belisayur">
-      <h2>Beli Sayur</h2>
+      <h2>Dapur Kebutuhan</h2>
 
       <!-- untuk bagian kategori -->
-      <div class="row isi-box-kategori">
-        <div class="box-kategori">
-          <div class="box-scroll">
 
-            <ul class="nav justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link" href="<?=base_url(); ?>home/s_daun">
-                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt1.png" alt="">
-                  </a>
-                  <a class="nav-link" href="<?=base_url(); ?>home/s_daun">Sayur Daun</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>home/s_buah">
-                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt2.png" alt="">
-                  </a>
-                  <a class="nav-link" href="<?= base_url(); ?>home/s_buah">Sayur Buah</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>home/umbi_umbian">
-                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt3.png" alt="">
-                  </a>
-                  <a class="nav-link" href="<?= base_url(); ?>home/umbi_umbian">Umbi - umbian</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>home/buah">
-                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt5.png" alt="">
-                  </a>
-                  <a class="nav-link" href="<?= base_url(); ?>home/buah">Buah</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>home/bumbu_dapur">
-                  <img class="icon-kategori" src="<?= base_url(); ?>assets/img/kt4.png" alt="">
-                  </a>
-                  <a class="nav-link" href="<?= base_url(); ?>home/bumbu_dapur">Bumbu Dapur</a>
-              </li>
-            </ul>
-
-          </div>
-        </div>
-      </div>
       <!-- untuk bagian kategori -->
 
       <div class="row isi-box-sayur">
-         <?php foreach($data->result() as $key) : ?>
+         <?php foreach($data->result() as $kebutuhan) : ?>
            <div class="col-6 col-md-6 col-sm-6 col-lg-3 col-xl-3 my-col">
 
              <div class="work">
-                 <img class="sayur" src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>" alt="">
+                 <img class="sayur" src="<?= base_url(); ?>assets/upload/<?= $kebutuhan->gambar; ?>" alt="">
                  <div class="work-bottom">
-                   <h3><?= $key->nama_sayur; ?></h3>
+                   <h3><?= $kebutuhan->nm_barang; ?></h3>
 
                    <div class="row">
                      <div class="col-sm-12">
                        <table align="center">
                          <tr>
-                   <td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?></td>
-                   <td align="left">/ <?= $key->satuan; ?></td>
+                   <td align="left">Rp. <?= number_format($kebutuhan->harga, 0, ',', '.'); ?></td>
+                   <td align="left">/ <?= $kebutuhan->satuan; ?></td>
                  </tr>
                  <tr>
                    <td align="left">Sisa Stok : </td>
-                   <td align="left"> <?= $key->stock; ?></td>
+                   <td align="left"> <?= $kebutuhan->stock; ?></td>
                  </tr>
                </table>
              </div>
            </div>
-                 <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/add/<?= $key->id_sayur; ?>">Masukkan ke Keranjang</a>
+                 <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/kebutuhan/<?= $kebutuhan->id_d_kebutuhan; ?>">Masukkan ke Keranjang</a>
                </div>
              </div>
 

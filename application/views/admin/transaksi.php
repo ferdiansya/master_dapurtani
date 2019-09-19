@@ -14,6 +14,7 @@
                <th>Tanggal Pesan</th>
                <th>Tanggal Pengiriman</th>
                <th>Email</th>
+               <th>Kecamatan</th>
                <th>Alamat</th>
                <th>No HP</th>
                <th>Nama Sayur</th>
@@ -36,6 +37,7 @@
                 <td><?= $key->tgl_pesan; ?></td>
                <td><?= $key->tgl_pengiriman; ?></td>
                <td><?= $key->email; ?></td>
+               <td><?= $key->kecamatan; ?></td>
                <td><?= $key->alamat; ?></td>
                <td><?= $key->no_hp; ?></td>
                <td><?= $key->nama_sayur; ?></td>

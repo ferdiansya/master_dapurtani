@@ -78,8 +78,13 @@
               <div class="card-body">
               <?= validation_errors('<p style="color:red">', '</p>'); ?>
               <form class="" action="<?= base_url(); ?>home/registrasi" method="post">
-                <div class="form-group">
-                  <input type="email" class="form-control" id="fullname" name="nama1" aria-describedby="emailHelp" placeholder="Nama Lengkap" value="<?= $nama1; ?>" required>
+                <div class="form-group form-row">
+                  <div class="col">
+                  <input type="text" class="form-control" name="nama1" placeholder="Nama Depan" value="<?= $nama1; ?>" required>
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" name="nama2" placeholder="Nama Belakang" value="<?= $nama2; ?>" required>
+                </div>
                 </div>
                 <div class="form-group">
                   <label>Kategori Pelanggan</label>
@@ -89,28 +94,22 @@
                     <label class="form-check-label" for="ind">Individu</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input detail" type="radio" name="ktg_pelanggan" id="bis" value="bisnis" <?php if ($ktg_pelanggan == 'bisnis') { echo 'checked'; } ?> required>
+                    <input class="form-check-input detail" type="radio" name="ktg_pelanggan" id="bis" value="bisnis" <?php if ($ktg_pelanggan == 'bisnis') { echo 'checked'; } ?> disabled>
                     <label class="form-check-label" for="bis">Bisnis</label>
                   </div>
                 </div>
-                <!-- form untuk kategori -->
-                <div id="form-input">
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="ktg_pelanggan" name="ktg_pelanggan" placeholder="Nama Instansi / Perusahaan" value="<?= $ktg_pelanggan; ?>" required>
-                  </div>
-                </div>
-                <!-- form untuk kategori -->
+
                 <div class="form-group">
-                  <input type="email" class="form-control" id="username" name="user" aria-describedby="emailHelp" placeholder="Username" value="<?= $user; ?>" required>
+                  <input type="text" class="form-control" id="username" name="user" placeholder="Username" value="<?= $user; ?>" required>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" value="<?= $email; ?>" required>
+                  <input type="email" class="form-control" name="email" placeholder="Email" value="<?= $email; ?>" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="password" name="pass1" aria-describedby="emailHelp" placeholder="Kata Sandi" value="" required>
+                  <input type="password" class="form-control" name="pass1" placeholder="Kata Sandi" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" id="password" name="pass2" aria-describedby="emailHelp" placeholder="Konfirmasi Kata Sandi" value="" required>
+                  <input type="password" class="form-control" name="pass2" placeholder="Konfirmasi Kata Sandi" required>
                 </div>
                           <div class="form-group">
                           <label>Jenis Kelamin</label>
@@ -125,16 +124,33 @@
                         </div>
                         </div>
                   <div class="form-group">
-                    <input type="number" class="form-control" id="telp" name="telp" aria-describedby="emailHelp" placeholder="Nomor Telepon" value="<?= $telp; ?>" required>
+                    <input type="number" class="form-control" id="telp" name="telp" placeholder="Nomor Telepon" value="<?= $telp; ?>" required>
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control" value="Kota Makassar" readonly="readonly">
+                    <input type="text" class="form-control" value="Kota Makassar" readonly="readonly">
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control" name="kecamatan" id="exampleFormControlSelect1">
+                      <option>-- Pilih Kecamatan --</option>
+                      <option value="Mariso" <?php if($kecamatan == 'Mariso') {echo "selected";} ?>>Mariso</option>
+                      <option value="Mamajang" <?php if($kecamatan == 'Mamajang') {echo "selected";} ?>>Mamajang</option>
+                      <option value="Tamalate" <?php if($kecamatan == 'Tamalate') {echo "selected";} ?>>Tamalate</option>
+                      <option value="Rappocini" <?php if($kecamatan == 'Rappocini') {echo "selected";} ?>>Rappocini</option>
+                      <option value="Makassar" <?php if($kecamatan == 'Makassar') {echo "selected";} ?>>Makassar</option>
+                      <option value="Ujung Pandang" <?php if($kecamatan == 'Ujung Pandang') {echo "selected";} ?>>Ujung Pandang</option>
+                      <option value="Wajo" <?php if($kecamatan == 'Wajo') {echo "selected";} ?>>Wajo</option>
+                      <option value="Bontoala" <?php if($kecamatan == 'Bontoala') {echo "selected";} ?>>Bontoala
+                      <option value="Ujung Tanah" <?php if($kecamatan == 'Ujung Tanah') {echo "selected";} ?>>Ujung Tanah</option>
+                      <option value="Tallo" <?php if($kecamatan == 'Tallo') {echo "selected";} ?>>Tallo</option>
+                      <option value="Panakkukang" <?php if($kecamatan == 'Panakkukang') {echo "selected";} ?>>Panakkukang</option>
+                      <option value="Manggala" <?php if($kecamatan == 'Manggala') {echo "selected";} ?>>Manggala</option>
+                      <option value="Biring Kanaya" <?php if($kecamatan == 'Biring Kanaya') {echo "selected";} ?>>Biring Kanaya</option>
+                      <option value="Tamalanrea" <?php if($kecamatan == 'Tamalanrea') {echo "selected";} ?>>Tamalanrea</option>
+                      </option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <textarea class="form-control" name="alamat" id="alamat" rows="5" cols="5" placeholder="Alamat Lengkap" required><?= $alamat; ?></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="promo" id="promo" aria-describedby="emailHelp" placeholder="Promo" value="<?= $promo; ?>" required>
                   </div>
 
                     <button type="submit" name="submit" value="Submit" class="btn btn-success">Submit</button>
@@ -184,7 +200,7 @@
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="https://wa.me/6282191946787" target="_blank">
+                <a href="https://wa.me/6281244065453" target="_blank">
                   <i class="fab fa-whatsapp fa-2x fa-fw"></i>
                 </a>
               </li>
@@ -219,11 +235,11 @@
             <form action="<?= base_url(); ?>home/login" method="post">
               <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email">
+                <input type="email" class="form-control" name="email" placeholder="Email">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" placeholder="Password">
               </div>
               <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">

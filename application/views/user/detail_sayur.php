@@ -55,41 +55,8 @@
         <!-- navbar menu -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <?php if ($this->session->userdata('user_login')) { ?>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/index2"> Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#pengguna"> Cara Pemasanan</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/transaksi">History</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>home/hubungi"> Hubungi Kami</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>home/tentang"> Tentang Kami</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/logout">Keluar</a>
-              </li>
-                <?php } else { ?>
-                  <li class="nav-item">
-                    <a class="nav-link" href="javascript::" data-toggle="modal" data-target="#modalMasuk"><i class="fa fa-sign-in"></i> Masuk</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/registrasi"><i class="fa fa-briefcase"></i> Daftar</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#tentang">Tentang Kami</a>
-                  </li >
-                  <li class="nav-item">
-                    <a class="nav-link" href="hubungi-kami.html">Hubungi Kami</a>
-                  </li>
-        <?php } ?>
 
-          </ul>
+
         </div>
     </nav>
 
@@ -108,12 +75,10 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Kode Belanja</th>
-                        <th scope="col">Tanggal Pemesanan</th>
-                        <th scope="col">Tanggal Pengiriman</th>
-                        <th scope="col">Pembayaran</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Opsi</th>
+                        <th scope="col">Nama Sayur</th>
+                        <th scope="col">Harga Sayur</th>
+                        <th scope="col">Jumlah</th>
+                        <th scope="col">Total</th>
                       </tr>
                     </thead>
                     <?php
@@ -123,22 +88,18 @@
                     ?>
                     <tr>
                       <td><?= $i++; ?></td>
-                      <td><?= $key->id_order; ?></td>
-                      <td><?= $key->tgl_pesan; ?></td>
-                      <td><?= $key->tgl_pengiriman; ?></td>
-                      <td><?= $key->pembayaran; ?></td>
-                      <td><?php
-                        if ($key->status == 1) {
-                          echo 'Diantar';
-                        } if ($key->status == 2) {
-                          echo 'Diterima';
-                        } if ($key->status == 3) {
-                          echo 'Batal';
-                        }
-                         ?></td>
-                         <td><a href="<?=base_url();?>home/detail/<?=$key->id_order;?>" class="btn btn-success">Detail Sayur</a></td>
-                  </tr>
+                     <td><?= $key->nama_sayur; ?></td>
+                      <td><?= $key->biaya; ?></td>
+                     <td><?= $key->qty; ?></td>
+                     <td><?= $key->biaya * $key->qty; ?></td>
+                     </tr>
                   <?php endforeach; ?>
+                  <tr>
+                  <td colspan="8">Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $key->sub; ?></td>
+                  <tr></tr>
+                  <td colspan="8">Ongkir  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp 2.000</td>
+                  <tr></tr>
+                  <td colspan="8">Total Pembayaran : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?= $key->total; ?></td>
                   </tbody>
                 </table>
               </div>

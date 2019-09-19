@@ -28,15 +28,17 @@ $i = 1;
                <td><?= $key->nama_sayur; ?></td>
                 <td><?= $key->biaya; ?></td>
                <td><?= $key->qty; ?></td>
-               <td><?= $key->sub; ?></td>
+               <td><?= $key->biaya * $key->qty; ?></td>
 
             </tr>
             <?php endforeach; ?>
-            <tr>
-              <th colspan="6">Total Harga Sayur =
-               <?= $key->sub; ?> di tambah Ongkir = <?= $key->total; ?></th>
-
-            </tr>
+            <tr> </tr>
+              <td colspan="6">Total Harga Sayur :
+               <?= $key->sub; ?></td>
+           <tr></tr>
+           <td colspan="6"> Ongkir : Rp 2.000</td>
+           <tr></tr>
+           <td colspan="6"> Total Pembayaran <?= $key->total; ?></td>
          </tbody>
 
       </table>

@@ -66,7 +66,7 @@
             <div class="input-group">
             <input type="text" class="form-control form-control-sm pencarian" type="search" placeholder="Cari..." aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
-            <button class="btn btn-outline-success btn-sm my-sm-0" onclick="masukkan()" type="submit">
+            <button class="btn btn-outline-success btn-sm my-sm-0" type="submit">
               <i class="fa fa-search fa-fw"></i>
             </button>
           </div>
@@ -153,17 +153,8 @@
                   </div>
 
                 </div>
-                <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
-                  <input class="form-control" type="hidden" name="sub" value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>">
-                  <input class="form-control" type="hidden" name="total" value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>" readonly>
-                <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
                     <input class="form-control" type="hidden" name="sub" value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>">
-                    <input class="form-control" type="hidden" name="total" value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>" readonly>
-              <?php } else { ?>
-                    <input class="form-control" type="hidden" name="sub" value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>">
-                    <input class="form-control" type="hidden" name="total" value="Rp. <?= number_format($this->cart->total() + 2000, 0, ',', '.'); ?>" readonly>
-
-                      <?php } ?>
+                    <input class="form-control" type="hidden" name="total" value="Rp. <?= number_format($this->cart->total() + 50000, 0, ',', '.'); ?>/minggu" readonly>
                   </div>
             </div>
         </div>
@@ -199,40 +190,10 @@
                 <td><?= $key['name']; ?></td>
                 <td><?= $key['qty']; ?></td>
                 <td>Rp. <?= number_format($key['price'] * $key['qty'], 0, ',', '.'); ?></td><tr>
+
               </tr>
 
             <?php endforeach; ?>
-            <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
-
-              <td colspan="2">Subtotal</td>
-              <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td><tr>
-              <td colspan="2">Ongkir</td>
-              <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RP. 0</td><tr>
-              <td colspan="2">Total</td>
-              <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td></tr>
-
-            <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
-
-                <td colspan="2">Subtotal</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td><tr>
-                <td colspan="2">Ongkir</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RP. 0</td><tr>
-                <td colspan="2">Total</td>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?></td></tr>
-
-          <?php } else { ?>
             <td colspan="2">Subtotal</td>
             <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -240,12 +201,11 @@
             <td colspan="2">Ongkir</td>
             <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RP. 2.000</td><tr>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RP. 50.000/minggu</td><tr>
             <td colspan="2">Total</td>
             <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total() + 2000, 0, ',', '.'); ?></td></tr>
-          <?php } ?>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rp. <?= number_format($this->cart->total() + 50000, 0, ',', '.'); ?></td></tr>
             </tbody>
           </table>
 
@@ -270,192 +230,6 @@
                 Kontak CS : 082191946787
               </p>
             </div>
-                  <?php if ($this->session->userdata('promo') == 'perbulan') { ?>
-                    <!-- form untuk pembayaran melalui bank -->
-                    <div id="form-input1" class="form-input-bank">
-                      <div class="row justify-content-center">
-                        <div class="col-lg-10">
-                          <div class="card form-transfer">
-                            <h6 class="card-title">Transfer Bank</h6>
-                            <div class="card-body">
-
-                              <hr class="garis-bawah">
-                              <table align="center">
-                                <tr>
-                                  <td>Bank BRI</td>
-                                  <td></td>
-                                  <td align="right"> <img src="<?= base_url(); ?>assets/img/bri.png" class="bank-bri"> </td>
-                                </tr>
-                                <tr>
-                                  <td>Nomor Rekening</td>
-                                  <td>:</td>
-                                  <td>3419-01-042126-53-5</td>
-                                </tr>
-                                <tr>
-                                  <td>Atas Nama</td>
-                                  <td>:</td>
-                                  <td>Muh.dzulfadly</td>
-                                </tr>
-                              </table>
-                              <hr class="garis-bawah">
-                              <table align="center">
-                                <tr>
-                                  <td>Bank BNI</td>
-                                  <td></td>
-                                  <td align="right"> <img src="<?= base_url(); ?>assets/img/bni.png" class="bank-bni"> </td>
-                                </tr>
-                                <tr>
-                                  <td>Nomor Rekening</td>
-                                  <td>:</td>
-                                  <td>3419-01-042126-53-5</td>
-                                </tr>
-                                <tr>
-                                  <td>Atas Nama</td>
-                                  <td>:</td>
-                                  <td>Muh.dzulfadly</td>
-                                </tr>
-                              </table>
-                              <hr class="garis-bawah">
-                              <p style="text-align: center; font-size: 15px;">
-                                Total pembayaran : Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>
-                                <br />
-
-                                <?php
-                               $nominal = $this->cart->total();
-                               $sub = substr($nominal, -2);
-                               $sub2 = substr($nominal, -1);
-
-                               $total = random_string('numeric', 2);
-                               $total2 = random_string('numeric', 1);
-
-                               if($sub==0){
-                                 $hasil = $nominal + $total;
-                                 echo "No Unik :<span style='color: #73C089'>".$total."<br></span>";
-                                 echo "Nominal Transfer : Rp.".number_format($hasil,0,",",".");
-                               } else if($sub2==0){
-                                 $hasil = $nominal + $total2;
-                                 $no = substr($hasil,-2);
-                                 echo "No Unik :".$no."<br>";
-                                 echo "Nominal Transfer : Rp.".number_format($hasil,0,",",".");
-                               }else{
-                                 echo "No Unik :".$sub."<br>";
-                                 echo "Nominal Transfer : Rp.".number_format($nominal,0,",",".");
-                               }
-
-echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&nbsp;Rp.".number_format($hasil,0,",",".")
-                                ?>
-                                <br />
-                                <br />
-                                <i>Transfer tepat hingga 2 digit terakhir untuk mempercepat verifikasi.</i>
-                              </p>
-                              <hr class="garis-bawah">
-                              <div class="batas-pembayaran">
-                                <p class="pembayaran">Batas Pembayaran : </p>
-                                <p class="waktu-pembayaran"><span id="getwaktupembayaran"></span>, Pukul 21.00 WITA</p>
-                              </div>
-                              <div class="btn-masukkan text-center">
-                                <input class="btn btn-beli btn-success" type="submit" value="Bayar dengan transfer bank">
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  <?php } else if ($this->session->userdata('promo') == 'perminggu') { ?>
-                      <!-- form untuk pembayaran melalui bank -->
-                      <div id="form-input1" class="form-input-bank">
-                        <div class="row justify-content-center">
-                          <div class="col-lg-10">
-                            <div class="card form-transfer">
-                              <h6 class="card-title">Transfer Bank</h6>
-                              <div class="card-body">
-
-                                <hr class="garis-bawah">
-                                <table align="center">
-                                  <tr>
-                                    <td>Bank BRI</td>
-                                    <td></td>
-                                    <td align="right"> <img src="<?= base_url(); ?>assets/img/bri.png" class="bank-bri"> </td>
-                                  </tr>
-                                  <tr>
-                                    <td>Nomor Rekening</td>
-                                    <td>:</td>
-                                    <td>3419-01-042126-53-5</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Atas Nama</td>
-                                    <td>:</td>
-                                    <td>Muh.dzulfadly</td>
-                                  </tr>
-                                </table>
-                                <hr class="garis-bawah">
-                                <table align="center">
-                                  <tr>
-                                    <td>Bank BNI</td>
-                                    <td></td>
-                                    <td align="right"> <img src="<?= base_url(); ?>assets/img/bni.png" class="bank-bni"> </td>
-                                  </tr>
-                                  <tr>
-                                    <td>Nomor Rekening</td>
-                                    <td>:</td>
-                                    <td>3419-01-042126-53-5</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Atas Nama</td>
-                                    <td>:</td>
-                                    <td>Muh.dzulfadly</td>
-                                  </tr>
-                                </table>
-                                <hr class="garis-bawah">
-                                <p style="text-align: center; font-size: 15px;">
-                                  Total pembayaran : Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>
-                                  <br />
-                                  <?php
-                                 $nominal = $this->cart->total();
-                                 $sub = substr($nominal, -2);
-                                 $sub2 = substr($nominal, -1);
-
-                                 $total = random_string('numeric', 2);
-                                 $total2 = random_string('numeric', 1);
-
-                                 if($sub==0){
-                                   $hasil = $nominal + $total;
-                                   echo "No Unik :<span style='color: #73C089'>".$total."<br></span>";
-                                   echo "Nominal Transfer : Rp.".number_format($hasil,0,",",".");
-                                 } else if($sub2==0){
-                                   $hasil = $nominal + $total2;
-                                   $no = substr($hasil,-2);
-                                   echo "No Unik :".$no."<br>";
-                                   echo "Nominal Transfer : Rp.".number_format($hasil,0,",",".");
-                                 }else{
-                                   echo "No Unik :".$sub."<br>";
-                                   echo "Nominal Transfer : Rp.".number_format($nominal,0,",",".");
-                                 }
-
-echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&nbsp;Rp.".number_format($hasil,0,",",".")
-                                  ?>
-                                  <br />
-                                  <br />
-                                  <i>Transfer tepat hingga 2 digit terakhir untuk mempercepat verifikasi.</i>
-                                </p>
-                                <hr class="garis-bawah">
-                                <div class="batas-pembayaran">
-                                  <p class="pembayaran">Batas Pembayaran : </p>
-                                  <p class="waktu-pembayaran"><span id="getwaktupembayaran"></span>, Pukul 21.00 WITA</p>
-                                </div>
-                                <div class="btn-masukkan text-center">
-                                  <input class="btn btn-beli btn-success" type="submit" value="Bayar dengan transfer bank">
-                                </div>
-
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <!-- form untuk pembayaran melalui bank -->
-                    <?php } else { ?>
             <!-- form untuk pembayaran melalui bank -->
             <div id="form-input1" class="form-input-bank">
               <div class="row justify-content-center">
@@ -502,10 +276,11 @@ echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&
                       </table>
                       <hr class="garis-bawah">
                       <p style="text-align: center; font-size: 15px;">
-                        Total pembayaran : Rp. <?= number_format($this->cart->total() + 2000, 0, ',', '.'); ?>
+                        Total pembayaran : Rp. <?= number_format($this->cart->total() + 50000, 0, ',', '.'); ?>
                         <br />
+
                         <?php
-                       $nominal = $this->cart->total() + 2000;
+                       $nominal = $this->cart->total() + 50000;
                        $sub = substr($nominal, -2);
                        $sub2 = substr($nominal, -1);
 
@@ -526,7 +301,7 @@ echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&
                          echo "Nominal Transfer : Rp.".number_format($nominal,0,",",".");
                        }
 
-echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&nbsp;Rp.".number_format($hasil,0,",",".")
+  echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&nbsp;Rp.".number_format($hasil,0,",",".")
                         ?>
                         <br />
                         <br />
@@ -546,7 +321,6 @@ echo "<input class='form-control' type='hidden' name='inppembayaran' value=Bank&
                 </div>
               </div>
             </div>
-          <?php } ?>
             <!-- form untuk pembayaran melalui bank -->
             <div class="form-check">
               <input class="form-check-input detail" type="radio" name="inppembayaran" id="exampleRadios2" value="cod" required>

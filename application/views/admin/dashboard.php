@@ -19,6 +19,7 @@
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url(); ?>admin_assets/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>admin_assets/css/datepicker.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -44,6 +45,8 @@
 
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>admin_assets/js/jquery.min.js"></script>
+
+    <script src="<?php echo base_url(); ?>admin_assets/js/bootstrap-datepicker.js"></script>
     <!-- Bootstrap -->
     <script src="<?php echo base_url(); ?>admin_assets/js/bootstrap.min.js"></script>
     <!-- Data Tables -->
@@ -59,5 +62,19 @@
       });
       $('.alert-message').alert().delay(3000).slideUp('slow');
     </script>
+    <script>
+		$(function () {
+		$('#datepicker').datepicker({
+		autoclose: true
+	});
+	});
+	</script>
+  <script>
+  $(function () {
+  $('#datepicker1').datepicker({
+  autoclose: true
+});
+});
+</script>
   </body>
 </html>

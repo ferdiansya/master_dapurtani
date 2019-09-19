@@ -20,6 +20,15 @@ class App extends CI_Model {
 		return $this->db->get();
 	}
 
+	function kebutuhan()
+		{
+
+			$this->db->limit(4); //100 Data yang akan muncul
+					$query =  $this->db->order_by('id_d_kebutuhan','ASC')->get('t_d_kebutuhan');
+					return $query->result();
+
+		}
+
 	function get_limit()
 		{
 
@@ -33,6 +42,15 @@ class App extends CI_Model {
 	{
 		$this->db->from($table);
 		$this->db->where($where);
+
+		return $this->db->get();
+	}
+
+	function history ($table = null, $where = null)
+	{
+		$this->db->from($table);
+		$this->db->where($where);
+		$this->db->order_by('id_order', 'DESC');
 
 		return $this->db->get();
 	}

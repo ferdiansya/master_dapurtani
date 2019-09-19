@@ -14,9 +14,10 @@
         <th>Pesan</th>
         <th>pengiriman</th>
         <th>Email</th>
+        <th>Kecamatan</th>
         <th>Alamat</th>
         <th>No Hp</th>
-        <th>Pembayaran</th>
+        <th>Pembayaran :</th>
         <th>Status :</th>
         <th>Opsi</th>
       </tr>
@@ -33,6 +34,7 @@
         <td><?= $pengiriman->tgl_pesan; ?></td>
         <td><?= $pengiriman->tgl_pengiriman; ?></td>
         <td><?= $pengiriman->email; ?></td>
+        <td><?= $pengiriman->kecamatan; ?></td>
         <td><?= $pengiriman->alamat; ?></td>
         <td><?= $pengiriman->no_hp; ?></td>
         <td><?= $pengiriman->pembayaran; ?></td>

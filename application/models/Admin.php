@@ -24,14 +24,20 @@ class Admin extends CI_Model {
 	{
 		$this->db->from($table);
 
+		return $this->db->get();
+	}
 
+	function komentar($table)
+	{
+		$this->db->from($table);
+		$this->db->order_by("id_s_pemesanan", 'DESC');
 		return $this->db->get();
 	}
 
 	function get_all_status($table)
 	{
 		$this->db->from($table);
-		 $this->db->order_by("tgl_pesan", 'DESC');
+		 $this->db->order_by("id_order", 'DESC');
 
 		return $this->db->get();
 	}

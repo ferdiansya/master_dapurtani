@@ -14,12 +14,12 @@
         <ul class="nav side-menu">
           <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="<?= base_url(); ?>transaksi">Transaksi</a></li>
               <li><a href="<?= base_url(); ?>sayur">Sayur</a></li>
-              <li><a href="<?= base_url(); ?>s_pengiriman">Status Pengiriman</a></li>
+              <li><a href="<?= base_url(); ?>d_kebutuhan">Dapur Kebutuhan</a></li>
+              <li><a href="<?= base_url(); ?>s_pengiriman">Pemesanan</a></li>
               <li><a href="<?= base_url(); ?>administrator/list_email">Email</a></li>
               <li><a href="<?= base_url(); ?>administrator/voucher">Voucher</a></li>
-              <li><a href="<?= base_url(); ?>user/promo">Promo</a></li>
+              <li><a href="<?= base_url(); ?>user/promo">Komentar</a></li>
               <li><a href="<?= base_url(); ?>user">User</a></li>
             </ul>
           </li>

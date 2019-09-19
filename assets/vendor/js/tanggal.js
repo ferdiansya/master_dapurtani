@@ -4,6 +4,9 @@ var tahun    = getwaktu.getFullYear();
 // untuk menampilkan tahun
 document.getElementById('gettahun').innerHTML = tahun;
 
+// global variabel
+var jam = getwaktu.getHours();
+
 // metode get
 function reloadwaktu() {
 
@@ -43,28 +46,60 @@ var bulan    = ['January', 'February', 'March', 'April', 'Mey', 'June', 'July', 
 var tanggall = gettanggal + " " + getbulan + " " + gettahun;
 
 // untuk waktu pengiriman
-setwaktu.setDate(gettanggal + 1);
+if (jam >= 18) 
+{
+  setwaktu.setDate(gettanggal + 2);
 
-var settanggal_p = setwaktu.getDate();
-var sethari_p    = setwaktu.getDay();
-var settanggal_p = setwaktu.getDate();
-var setbulan_p   = setwaktu.getMonth();
+  var settanggal_p = setwaktu.getDate();
+  var sethari_p = setwaktu.getDay();
+  var settanggal_p = setwaktu.getDate();
+  var setbulan_p = setwaktu.getMonth();
 
-var hari_p  = hari[sethari_p];
-var bulan_p = bulan[setbulan_p];
+  var hari_p = hari[sethari_p];
+  var bulan_p = bulan[setbulan_p];
 
-var tanggall_p = settanggal_p + " " + bulan_p + " " + gettahun;
+  var tanggall_p = settanggal_p + " " + bulan_p + " " + gettahun;
+  
+  // jquery
+  $(document).ready(function () {
 
-// jquery
-$(document).ready(function () {
+  	$('#inputtanggal').val(tanggall);
+  	$('#inputtanggal_p').val(tanggall_p);
 
-  $('#inputtanggal').val(tanggall);
-  $('#inputtanggal_p').val(tanggall_p);
+  });
 
-});
+  document.getElementById('getwaktupengiriman1').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getwaktupengiriman2').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getwaktupengiriman3').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getwaktupengiriman4').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getharipengiriman').innerHTML = hari_p;
+  
+} else 
+{
+  setwaktu.setDate(gettanggal + 1);
 
-document.getElementById('getwaktupengiriman1').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
-document.getElementById('getwaktupengiriman2').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
-document.getElementById('getwaktupengiriman3').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
-document.getElementById('getwaktupengiriman4').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
-document.getElementById('getharipengiriman').innerHTML = hari_p;
+  var settanggal_p = setwaktu.getDate();
+  var sethari_p = setwaktu.getDay();
+  var settanggal_p = setwaktu.getDate();
+  var setbulan_p = setwaktu.getMonth();
+
+  var hari_p = hari[sethari_p];
+  var bulan_p = bulan[setbulan_p];
+
+  var tanggall_p = settanggal_p + " " + bulan_p + " " + gettahun;
+
+  // jquery
+  $(document).ready(function () {
+
+  	$('#inputtanggal').val(tanggall);
+  	$('#inputtanggal_p').val(tanggall_p);
+
+  });
+
+  document.getElementById('getwaktupengiriman1').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getwaktupengiriman2').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getwaktupengiriman3').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getwaktupengiriman4').innerHTML = hari_p + ", " + settanggal_p + " " + bulan_p + " " + gettahun;
+  document.getElementById('getharipengiriman').innerHTML = hari_p;
+  
+}

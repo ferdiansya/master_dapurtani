@@ -59,8 +59,8 @@
                         <div class="col-md-4 col-sm-6">
                           <select name="promo" class="form-control">
                             <option value="">--Pilih Promo--</option>
-                            <option value="aktif" <?php if($user->promo == 'aktif') {echo "selected";} ?>>Aktif</option>
-                            <option value="habis" <?php if($user->promo == 'habis' ) {echo "selected";} ?>>Habis</option>
+                            <option value="perbulan" <?php if($user->promo == 'perbulan') {echo "selected";} ?>>Perbulan</option>
+                            <option value="Perminggu" <?php if($user->promo == 'perminggu' ) {echo "selected";} ?>>Perminggu</option>
                           </select>
                         </div>
                       </div>
@@ -70,11 +70,28 @@
                         <div class="col-md-4 col-sm-6">
                           <select name="s_pemesanan" class="form-control">
                             <option value="">--Pilih S_Pemesanan--</option>
+                            <option value="proses" <?php if($user->s_pemesanan == 'proses' ) {echo "selected";} ?>>Diproses</option>
+                            <option value="selesai" <?php if($user->s_pemesanan == 'selesai' ) {echo "selected";} ?>>Selesai</option>
                             <option value="diantar" <?php if($user->s_pemesanan == 'diantar') {echo "selected";} ?>>Diantar</option>
                             <option value="diterima" <?php if($user->s_pemesanan == 'diterima' ) {echo "selected";} ?>>Diterima</option>
                           </select>
                         </div>
                       </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Tanggal Mulai</label>
+                        <div class="col-md-7 col-sm-6 col-xs-12">
+                             <input type="text" name="tgl_mulai" id="datepicker" class="form-control col-md-7 col-xs-12" value="<?= $user->tgl_mulai; ?>">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-md-2 col-sm-2 col-xs-12">Tanggal Berakhir</label>
+                      <div class="col-md-7 col-sm-6 col-xs-12">
+                           <input type="text" name="tgl_akhir" id="datepicker1" class="form-control col-md-7 col-xs-12" value="<?= $user->tgl_akhir; ?>">
+                    </div>
+                  </div>
+
 
                       <div class="ln_solid"></div>
 

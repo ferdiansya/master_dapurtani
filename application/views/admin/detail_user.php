@@ -27,6 +27,10 @@ $user = $data->row();
             <td>: <?php if($user->jk == 'L') {echo "Laki - laki"; } else { echo "Perempuan"; } ?></td>
           </tr>
           <tr>
+            <td>Kecamatan</td>
+            <td>: <?= $user->kecamatan; ?></td>
+          </tr>
+          <tr>
             <td>E-mail</td>
             <td>: <?= $user->email; ?></td>
           </tr>
@@ -37,6 +41,14 @@ $user = $data->row();
           <tr>
             <td>Status</td>
             <td>: <?php if($user->status == '1') {echo "Active"; } else { echo "Non Active"; } ?></td>
+          </tr>
+          <tr>
+            <td>Tanggal Mulai</td>
+            <td>: <?= $user->tgl_mulai; ?></td>
+          </tr>
+          <tr>
+            <td>Tanggal Berakhir</td>
+            <td>: <?= $user->tgl_akhir; ?></td>
           </tr>
         </table>
         <a href="#" class="btn btn-warning">Edit</a>

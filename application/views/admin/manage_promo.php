@@ -13,6 +13,8 @@
         <th width="20%">fullname</th>
         <th>Bintang</th>
           <th>Email</th>
+          <th>Alamat</th>
+          <th>Kecamatan</th>
           <th>Telp</th>
         <th width="40%">Komentar</th>
         <th>opsi</th>
@@ -28,6 +30,8 @@
         <td><?= $promo->nama; ?></td>
         <td><?= $promo->bintang; ?></td>
         <td><?= $promo->email; ?></td>
+        <td><?= $promo->alamat; ?></td>
+        <td><?= $promo->kecamatan; ?></td>
         <td><?= $promo->telp; ?></td>
         <td><?= $promo->komentar; ?></td>
         <td>

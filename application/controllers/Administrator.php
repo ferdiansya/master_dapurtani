@@ -14,8 +14,7 @@ class Administrator extends CI_Controller {
 	public function index()
 	{
     $this->cek_login();
-    $data['data'] = $this->app->get_limit();
-		$this->template->admin('admin/home', $data);
+		$this->template->admin('admin/home');
 	}
 
   public function list_email()

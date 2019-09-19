@@ -22,9 +22,11 @@
 <script src="<?= base_url(); ?>assets/vendor/js/carousel.js"></script>
 
 <!-- Pemanggilan Tanggal -->
-<script src="<?= base_url(); ?>assets/vendor/js/tanggal1.js"></script>
+<script src="<?= base_url(); ?>assets/vendor/js/tanggal.js"></script>
 
 <script src="<?= base_url(); ?>assets/vendor/js/sidebar.js"></script>
+
+<script src="<?= base_url(); ?>assets/vendor/js/addordel.js"></script>
 
 <script type="text/javascript">
 
