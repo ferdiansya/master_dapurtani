@@ -4,25 +4,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Administrator extends CI_Controller {
 
   function __construct()
-{
+  {
     parent::__construct();
     $this->load->library(['template', 'form_validation','email','session']);
     $this->load->model('admin');
     $this->load->helper(['form','security']);
-}
+  }
 
 	public function index()
 	{
     $this->cek_login();
-		$this->template->admin('admin/home');
+    $this->template->admin('admin/home', $data = null);
 	}
 
   public function list_email()
   {
     $this->cek_login();
-  $data['data'] = $this->admin->get_all('t_email');
+    $data['data'] = $this->admin->get_all('t_email');
 
-  $this->template->admin('admin/email', $data);
+    $this->template->admin('admin/email', $data);
   }
 
   public function voucher()

@@ -25,10 +25,10 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <?php echo $nav; ?>
+        <?= $nav; ?>
         <!-- page content -->
         <div class="right_col" role="main">
-          <?php echo $content; ?>
+          <?= $content ?>
         </div>
         <!-- /page content -->
 

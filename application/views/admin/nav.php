@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="index.html" class="site_title"><i class="fa fa-shopping-cart"></i> <span>Dapurtani</span></a>
+      <a href="<?= base_url(); ?>administrator" class="site_title"><i class="fa fa-shopping-cart"></i> <span>Dapurtani</span></a>
     </div>
 
     <div class="clearfix"></div>
@@ -23,12 +23,7 @@
               <li><a href="<?= base_url(); ?>user">User</a></li>
             </ul>
           </li>
-
-
-
-
       </div>
-
     </div>
     <!-- /sidebar menu -->
 
