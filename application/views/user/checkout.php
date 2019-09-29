@@ -97,46 +97,62 @@
 
 							<?= validation_errors('<p style="color:red">', '</p>'); ?>
 							<form class="" action="<?= base_url(); ?>checkout/tambah_aksi" method="post">
-								<input class="form-control" type="hidden" id="inputtanggal" name="inputtanggal" value="inputtanggal"
-									readonly>
+								<input class="form-control" type="hidden" id="inputtanggal" name="inputtanggal" value="inputtanggal" readonly>
 								<div class="work-form">
-									<div class="form-group row">
-										<label class="col-sm-8 col-form-label form-input" for="">Tanggal Pengiriman</label>
-										<div class="col-sm-12">
-											<input class="form-control" type="text" id="inputtanggal_p" name="tgl_pengiriman"
-												value="inputtanggal_p" readonly>
-										</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">Tanggal Pengiriman</label>
+									<div class="col-sm-12">
+										<input class="form-control" type="text" id="inputtanggal_p" name="tgl_pengiriman"
+											value="inputtanggal_p" readonly>
 									</div>
-									<div class="form-group row">
-										<label class="col-sm-8 col-form-label form-input" for="">Nama Lengkap *</label>
-										<div class="col-sm-12">
-											<input class="form-control" type="text" name="nama"
-												value="<?= $this->session->userdata('name');  ?>&nbsp;<?= $this->session->userdata('blkg');  ?>"
-												required>
-										</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">Nama Lengkap *</label>
+									<div class="col-sm-12">
+										<input class="form-control" type="text" name="nama"
+											value="<?= $this->session->userdata('name');  ?>&nbsp;<?= $this->session->userdata('blkg');  ?>"
+											required>
 									</div>
-									<div class="form-group row">
-										<label class="col-sm-8 col-form-label form-input" for="">Email *</label>
-										<div class="col-sm-12">
-											<input class="form-control" type="text" name="email"
-												value="<?= $this->session->userdata('email'); ?>" readonly>
-										</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">Email *</label>
+									<div class="col-sm-12">
+										<input class="form-control" type="text" name="email"
+											value="<?= $this->session->userdata('email'); ?>" readonly>
 									</div>
-									<div class="form-group row">
-										<label class="col-sm-8 col-form-label form-input" for="">No. Telepon / HP *</label>
-										<div class="col-sm-12">
-											<input class="form-control" type="number" name="no_hp"
-												value="<?= $this->session->userdata('telp'); ?>" required>
-										</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">No. Telepon / HP *</label>
+									<div class="col-sm-12">
+										<input class="form-control" type="number" name="no_hp"
+											value="<?= $this->session->userdata('telp'); ?>" required>
 									</div>
-									<div class="form-group row">
-										<label class="col-sm-8 col-form-label form-input" for="">Kota Anda</label>
-										<div class="col-sm-12">
-											<input class="form-control" type="text" name="" value="Sementara hanya berlaku di Kota Makassar"
-												readonly>
-										</div>
+								</div>
+								<div class="form-group">
+									<label>Tempat Pengiriman *</label>
+									<br>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="t_pengirim" id="rumah" value="Rumah"
+											required>
+										<label class="form-check-label" for="rumah">Rumah</label>
 									</div>
-									<div class="form-group">
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="t_pengirim" id="kantor" value="Kantor"
+											required>
+										<label class="form-check-label" for="kantor">Kantor</label>
+									</div>
+								</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">Kota Anda</label>
+									<div class="col-sm-12">
+										<input class="form-control" type="text" name=""
+											value="Sementara hanya berlaku di Kota Makassar" readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">Kecamatan</label>
+									<div class="col-sm-12">
 										<select class="form-control" name="kecamatan" id="exampleFormControlSelect1">
 											<option>-- <?= $this->session->userdata('kecamatan'); ?> --</option>
 											<option value="Mariso">Mariso</option>
@@ -156,15 +172,15 @@
 											</option>
 										</select>
 									</div>
-									<div class="form-group row">
-										<label class="col-sm-8 col-form-label form-input" for="">Alamat Lengkap *</label>
-										<div class="col-sm-12">
-											<textarea class="form-control" name="alamat" rows="5" cols="5"
-												required><?= $this->session->userdata('alamat'); ?></textarea>
-										</div>
-									</div>
-
 								</div>
+								<div class="form-group row">
+									<label class="col-sm-8 col-form-label form-input" for="">Alamat Lengkap *</label>
+									<div class="col-sm-12">
+										<textarea class="form-control" name="alamat" rows="5" cols="5"
+											required><?= $this->session->userdata('alamat'); ?></textarea>
+									</div>
+								</div>
+                  
 								<?php if ($this->session->userdata('promo') == 'perbulan') { ?>
 								<input class="form-control" type="hidden" name="sub"
 									value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>">
@@ -180,7 +196,6 @@
 									value="Rp. <?= number_format($this->cart->total(), 0, ',', '.'); ?>">
 								<input class="form-control" type="hidden" name="total"
 									value="Rp. <?= number_format($this->cart->total() + 2000, 0, ',', '.'); ?>" readonly>
-
 								<?php } ?>
 						</div>
 					</div>

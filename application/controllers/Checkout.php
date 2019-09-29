@@ -23,14 +23,15 @@ class Checkout extends CI_Controller {
 		if (!$this->session->userdata('user_id') || !$this->cart->contents()) {
 			redirect('home');
 		}
-		$get = $this->app->get_where('t_users', array('id_user' => $this->session->userdata('user_id')))->row();
 
+		$get = $this->app->get_where('t_users', array('id_user' => $this->session->userdata('user_id')))->row();
 		$id_order     = time();
 		$id_user      = $this->session->userdata('user_id', TRUE);
 		$tgl_pengirim = $this->input->post('tgl_pengiriman', TRUE);
 		$nama         = $this->input->post('nama', TRUE);
 		$email        = $this->input->post('email', TRUE);
 		$no_hp        = $this->input->post('no_hp', TRUE);
+		$t_pengirim   = $this->input->post('t_pengirim', TRUE);
 		$kecamatan    = $this->input->post('kecamatan', TRUE);
 		$alamat       = $this->input->post('alamat', TRUE);
 		$tgl_pesan    = $this->input->post('inputtanggal', TRUE);
@@ -46,19 +47,21 @@ class Checkout extends CI_Controller {
 		}
 
 		$data = array(
-			'id_order' => $id_order,
-			'id_user' => $id_user,
+			'id_order'       => $id_order,
+			'id_user'        => $id_user,
 			'tgl_pengiriman' => $tgl_pengirim,
-			'nama' => $nama,
-			'email' => $email,
-			'no_hp' => $no_hp,
-			'kecamatan' => $kecamatan,
-			'alamat' => $alamat,
-			'tgl_pesan' => $tgl_pesan,
-			'tgl_bayar' => $bts,
-			'pembayaran' => $pembayaran,
-			'status' => ''
-			);
+			'nama'           => $nama,
+			'email'          => $email,
+			'no_hp'          => $no_hp,
+			't_pengirim'     => $t_pengirim,
+			'kecamatan'      => $kecamatan,
+			'alamat'         => $alamat,
+			'tgl_pesan'      => $tgl_pesan,
+			'tgl_bayar'      => $bts,
+			'pembayaran'     => $pembayaran,
+			'status'         => ''
+		);
+
 		if ($this->app->insert('t_order', $data)){
 			foreach ($this->cart->contents() as $key) {
 				$detail = [
@@ -74,8 +77,6 @@ class Checkout extends CI_Controller {
 			}
 
 			$this->cart->destroy();
-		/*	$this->session->set_flashdata('alert', 'Terima Kasih Telah Belanja di Dapurtani');
-				redirect('checkout/index');*/
 		}
 		$this->load->library('email');
 		$config = array();
@@ -99,22 +100,22 @@ class Checkout extends CI_Controller {
 		$this->email->to($email);
 		$this->email->subject("Dapurtani");
 		$this->email->message(
-		' Terima Kasih telah melakukan pemesanan di Dapurtani, Detail pemesanan sebagai berikut :<br/><br/>
-	<table border="1" style="width: 80%">
-	<tr><th>#</th><th>Nama Barang</th><th>Jumlah</th><th>Harga</th></tr>
-	'.$table.'
-	<tr><td colspan="3">Subtotal</td><td style="text-align:right">'.$sub.'</td></tr>
-	<tr><td colspan="3">Total</td><td style="text-align:right">'.$total.'</td></tr>
-	</table>'
+			' Terima Kasih telah melakukan pemesanan di Dapurtani, Detail pemesanan sebagai berikut :<br/><br/>
+			<table border="1" style="width: 80%">
+			<tr><th>#</th><th>Nama Barang</th><th>Jumlah</th><th>Harga</th></tr>
+			'.$table.'
+			<tr><td colspan="3">Subtotal</td><td style="text-align:right">'.$sub.'</td></tr>
+			<tr><td colspan="3">Total</td><td style="text-align:right">'.$total.'</td></tr>
+			</table>'
 		);
 
 		if($this->email->send())
 		{
-		echo '<script type="text/javascript">alert("Silahkan cek email anda untuk detail pemesanan...");window.location.replace("'.base_url('home/index2').'")</script>';
+			echo '<script type="text/javascript">alert("Silahkan cek email anda untuk detail pemesanan...");window.location.replace("'.base_url('home/index2').'")</script>';
 		}else
 		{
-		echo '<script type="text/javascript">alert("Pemesanan Berhasil");window.location.replace("'.base_url('home').'")</script>';
+			echo '<script type="text/javascript">alert("Pemesanan Berhasil");window.location.replace("'.base_url('home').'")</script>';
 		}
 
 	}
-	}
+}

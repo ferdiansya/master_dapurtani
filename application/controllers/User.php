@@ -4,18 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 
   function __construct()
-{
+  {
     parent::__construct();
     $this->load->library(['template', 'form_validation','email','session']);
     $this->load->model('admin');
     $this->load->helper(['form','security']);
-}
+  }
 
 	public function index()
 	{
     $this->cek_login();
     $data['data'] = $this->admin->get_all('t_users');
-
     $this->template->admin('admin/manage_user', $data);
 	}
 
@@ -23,7 +22,6 @@ class User extends CI_Controller {
   {
     $this->cek_login();
     $data['data'] = $this->admin->komentar('t_s_pemesanan');
-
     $this->template->admin('admin/manage_promo', $data);
   }
 

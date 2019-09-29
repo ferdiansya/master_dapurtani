@@ -4,16 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class S_pengiriman extends CI_Controller {
 
   function __construct()
-{
+  {
     parent::__construct();
     $this->load->library(array('template', 'form_validation'));
     $this->load->model('admin');
-}
+  }
 
   public function index()
   {
     $data['data'] = $this->admin->get_all_status('t_order');
-
     $this->template->admin('admin/status', $data);
   }
 
