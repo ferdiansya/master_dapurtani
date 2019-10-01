@@ -57,37 +57,35 @@ class User extends CI_Controller {
   public function update_user()
   {
     $id_user = $this->uri->segment(3);
-      if ($this->input->post('submit', TRUE) == 'Submit') {
-    $this->form_validation->set_rules('username', 'Username', 'required|min_length[3]');
-    $this->form_validation->set_rules('fullname', 'Nama Lengkap', 'required');
-    $this->form_validation->set_rules('email', 'Email', 'required');
-    $this->form_validation->set_rules('telp', 'Telp', 'required');
-    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-    $this->form_validation->set_rules('promo', 'Promo');
-    $this->form_validation->set_rules('s_pemesanan', 'S_Pemesanan');
-    $this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai');
-    $this->form_validation->set_rules('tgl_akhir', 'Tanggal Berakhir');
+    if ($this->input->post('submit', TRUE) == 'Submit') {
+      $this->form_validation->set_rules('username', 'Username', 'required|min_length[3]');
+      $this->form_validation->set_rules('fullname', 'Nama Lengkap', 'required');
+      $this->form_validation->set_rules('email', 'Email', 'required');
+      $this->form_validation->set_rules('telp', 'Telp', 'required');
+      $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+      $this->form_validation->set_rules('promo', 'Promo');
+      $this->form_validation->set_rules('s_pemesanan', 'S_Pemesanan');
+      $this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai');
+      $this->form_validation->set_rules('tgl_akhir', 'Tanggal Berakhir');
 
-    if ($this->form_validation->run() == TRUE)
-    {
-      $user = array(
-        'username' => $this->input->post('username', TRUE),
-        'fullname' => $this->input->post('fullname', TRUE),
-        'email' => $this->input->post('email', TRUE),
-        'telp' => $this->input->post('telp', TRUE),
-        'alamat' => $this->input->post('alamat', TRUE),
-        'promo' => $this->input->post('promo', TRUE),
-        's_pemesanan' => $this->input->post('s_pemesanan', TRUE),
-        'tgl_mulai' => $this->input->post('tgl_mulai', TRUE),
-        'tgl_akhir' => $this->input->post('tgl_akhir', TRUE),
-      );
-
-      $this->admin->update('t_users', $user, array('id_user' => $id_user));
-      echo '<script type="text/javascript">alert("Berhasil di ubah");window.location.replace("'.base_url('user').'")</script>';
+      if ($this->form_validation->run() == TRUE) {
+        $user = array(
+          'username' => $this->input->post('username', TRUE),
+          'fullname' => $this->input->post('fullname', TRUE),
+          'email' => $this->input->post('email', TRUE),
+          'telp' => $this->input->post('telp', TRUE),
+          'alamat' => $this->input->post('alamat', TRUE),
+          'promo' => $this->input->post('promo', TRUE),
+          's_pemesanan' => $this->input->post('s_pemesanan', TRUE),
+          'tgl_mulai' => $this->input->post('tgl_mulai', TRUE),
+          'tgl_akhir' => $this->input->post('tgl_akhir', TRUE),
+        );
+        $this->admin->update('t_users', $user, array('id_user' => $id_user));
+        echo '<script type="text/javascript">alert("Berhasil di ubah");window.location.replace("'.base_url('user').'")</script>';
+      }
     }
-  }
-  $data['data'] = $this->admin->get_where('t_users', ['id_user' =>$this->uri->segment(3)]);
-
+    
+    $data['data'] = $this->admin->get_where('t_users', ['id_user' =>$this->uri->segment(3)]);
     $this->template->admin('admin/user_form', $data);
   }
 
