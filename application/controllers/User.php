@@ -98,6 +98,13 @@ class User extends CI_Controller {
     redirect('user');
   }
 
+  public function hapus_komentar($id_s_pemesanan)
+  {
+    $where = array('id_s_pemesanan' => $id_s_pemesanan);
+    $this->admin->hapus_data($where,'t_s_pemesanan');
+    redirect('user/promo');
+  }
+
   function cek_login()
   {
     if(!$this->session->userdata('admin'))

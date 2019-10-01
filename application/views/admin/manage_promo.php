@@ -21,10 +21,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php
-      $i = 1;
-      foreach ($data->result() as $promo) :
-      ?>
+				<?php $i = 1; foreach ($data->result() as $promo) : ?>
 				<tr>
 					<td><?= $i++; ?></td>
 					<td><?= $promo->nama; ?></td>
@@ -36,9 +33,7 @@
 					<td><?= $promo->tgl; ?></td>
 					<td><?= $promo->komentar; ?></td>
 					<td>
-						<a href="<?= base_url(); ?>user/hapus/<?= $promo->id_s_pemesanan; ?>" class="btn btn-danger"
-							onclick="return confirm('Yakin Ingin menghapus item ini dari keranjang anda ?')"><i
-								class="fa fa-trash"></i></a>
+						<a href="<?= base_url(); ?>user/hapus_komentar/<?= $promo->id_s_pemesanan; ?>" class="btn btn-danger" onclick="return confirm('Yakin Ingin menghapus item ini dari keranjang anda ?')"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>
 				<?php endforeach; ?>
