@@ -479,7 +479,12 @@
                </table>
              </div>
            </div>
-                 <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/add/<?= $key->id_sayur; ?>">Masukkan ke Keranjang</a>
+           <?php if ($key->stock  == 0) { 
+      echo "<b>Stock Kosong</b>";
+      ?>
+       <?php } else { ?>
+          <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/add/<?= $key->id_sayur; ?>">Masukkan ke Keranjang</a>
+          <?php } ?>
                </div>
              </div>
 
@@ -616,7 +621,7 @@
       </div>
       <div class="modal-body">
           <div class="form-group">
-            <input type="number" name="qty" class="form-control" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
+            <input type="number" name="qty" min="1" max="<?= $key['stock']; ?>" class="form-control" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
             <label for="qty<?= $key['rowid']; ?>">Jumlah Pesan</label>
           </div>
           <button type="submit" class="btn btn-danger" data-dismiss="modal">Batal</button>

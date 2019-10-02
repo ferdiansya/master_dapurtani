@@ -675,7 +675,7 @@ Dapur warung adalah tempat belanja kebutuhan dapur lainnya yang ada di warung se
           <div class="modal-body">
               <div class="form-group">
                 <label for="qty<?= $key['rowid']; ?>">Jumlah Pesan</label>
-                <input type="number" name="qty" min="1" max="" class="form-control" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
+                <input type="number" name="qty" min="1" max="<?= $key['stock']; ?>" class="form-control" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
 
               </div>
               <button type="submit" class="btn btn-danger" data-dismiss="modal">Batal</button>

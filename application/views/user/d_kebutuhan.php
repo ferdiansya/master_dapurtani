@@ -441,7 +441,12 @@
                </table>
              </div>
            </div>
-                 <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/kebutuhan/<?= $kebutuhan->id_d_kebutuhan; ?>">Masukkan ke Keranjang</a>
+           <?php if ($kebutuhan->stock  == 0) { 
+      echo "<b>Stock Kosong !</b>";
+      ?>
+       <?php } else { ?>
+          <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/kebutuhan/<?= $kebutuhan->id_d_kebutuhan; ?>">Masukkan ke Keranjang</a>
+          <?php } ?>
                </div>
              </div>
 
@@ -565,9 +570,7 @@
   </form>
 </div>
 <!-- Modal masuk -->
-<?php
-  foreach($this->cart->contents() as $key) :
-    ?>
+<?php foreach($this->cart->contents() as $key) : ?>
 <!-- Modal ubah -->
 <div class="modal fade" id="modalUbah<?= $key['rowid']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form action="<?= base_url(); ?>cart/update/<?= $key['rowid']; ?>" method="post">
@@ -578,7 +581,7 @@
       </div>
       <div class="modal-body">
           <div class="form-group">
-            <input type="number" name="qty" class="form-control" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
+            <input type="number" name="qty" class="form-control" min="1" max="<?= $key['stock']; ?>" value="<?= $key['qty']; ?>" id="qty<?= $key['qty']; ?>" autofocus>
             <label for="qty<?= $key['rowid']; ?>">Jumlah Pesan</label>
           </div>
           <button type="submit" class="btn btn-danger" data-dismiss="modal">Batal</button>
