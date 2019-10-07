@@ -477,7 +477,7 @@
             <!-- button view all -->
       <div class="row justify-content-center view-all">
         <div class="col-lg-2">
-          <a class="btn btn-success" href="<?= base_url(); ?>home/list_sayur">View All</a>
+          <a class="btn btn-success" href="<?= base_url(); ?>home/list_sayur">Lihat Semua</a>
         </div>
       </div>
       <!-- button view all -->
