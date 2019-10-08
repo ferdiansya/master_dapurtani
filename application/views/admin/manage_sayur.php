@@ -13,6 +13,8 @@
       <tr>
         <th>#</th>
         <th>Nama Sayur</th>
+        <th>Nama Petani</th>
+        <th>Kelompok Sayur</th>
         <th>Harga</th>
         <th>Promo</th>
         <th>Jenis Sayur</th>
@@ -28,6 +30,22 @@
       <tr>
         <td><?= $i++; ?></td>
         <td><?= $sayur->nama_sayur; ?></td>
+        <td><?= $sayur->nama_petani; ?></td>
+        <td>
+        <?php
+          if ($sayur->k_sayur == 1) {
+            echo '<label class="label-success" style="color:white; padding:3px 5px;">Organik</label>';
+          } if ($sayur->k_sayur == 2) {
+            echo '<label class="label-primary" style="color:white; padding:3px 5px;">Hidroponik</label>';
+          } if ($sayur->k_sayur == 3) {
+            echo '<label class="label-default" style="color:white; padding:3px 5px;">Bebas Pestisida</label>';
+          } if ($sayur->k_sayur == 4)  {
+            echo '<label class="label-warning" style="color:white; padding:3px 5px;">Pertanian Lokal</label>';
+          } if ($sayur->k_sayur == 5)  {
+            echo '<label class="label-info" style="color:white; padding:3px 5px;">Import</label>';
+          }
+           ?>
+        </td>
         <td><?= 'Rp. '.number_format($sayur->harga,0,',','.'); ?></td>
           <td><?= 'Rp. '.number_format($sayur->promo,0,',','.'); ?></td>
         <td>

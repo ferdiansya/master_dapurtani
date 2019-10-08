@@ -114,23 +114,16 @@
 	<nav class="navbar fixed-bottom navbar-bottom sidebarNavigation" data-sidebarClass="navbar-light bg-light">
 		<div class="container">
 			<div class="nav navbar-nav navbar-left">
-				<p class="harga"><?php
-          if ($this->cart->total() > 0) {
-            echo 'Rp. '.number_format($this->cart->total(), 0, ',', '.');
-          } else {
-            echo 'Rp. 0';
-          }
-           ?>
+				<p class="harga harga-total">
+					<?= ($this->cart->total() > 0) ? 'Rp. '.number_format($this->cart->total(), 0, ',', '.') : 'Rp. 0'; ?>
 				</p>
 			</div>
 
 			<div class="garis-vertical"></div>
+
 			<div class="nav navbar-nav navbar-right box-keranjang">
-				<button class="btn btn-success keranjang-icon leftNavbarToggler" type="button" data-toggle="collapse"
-					data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<img src="<?= base_url(); ?>assets/img/keranjang.png"
-						alt="">&nbsp;&nbsp;<?php echo $this->cart->total_items(); ?>
+				<button class="btn btn-success keranjang-icon leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+					Keranjang Belanja&nbsp;&nbsp;<?php echo $this->cart->total_items(); ?>
 				</button>
 
 				<div class="collapse navbar-collapse">
@@ -476,25 +469,43 @@
 			<?php foreach($data->result() as $key) : ?>
 			<div class="col-6 col-md-6 col-sm-6 col-lg-3 col-xl-3 my-col">
 
-				<div class="work">
-					<img class="sayur" src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>" alt="">
-					<div class="work-bottom">
-						<h3><?= $key->nama_sayur; ?></h3>
+			<div class="work">
+		<img class="sayur" src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>" alt="">
+		<div class="work-bottom">
+			<h3><?= $key->nama_sayur; ?></h3>
 
-						<div class="row">
-							<div class="col-sm-12">
-								<table align="center">
-									<tr>
-										<td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?></td>
-										<td align="left">/ <?= $key->satuan; ?></td>
-									</tr>
-									<tr>
-										<td align="left">Sisa Stok : </td>
-										<td align="left"> <?= $key->stock; ?></td>
-									</tr>
-								</table>
-							</div>
-						</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<table align="center">
+						<tr>
+							<td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?> / <?= $key->satuan; ?></td>
+						</tr>
+						<tr>
+							<td align="left"><?= $key->nama_petani; ?></td>
+						</tr>
+						<tr>
+							<td align="left">
+							<?php
+          if ($key->k_sayur == 1) {
+            echo 'Organik';
+          } if ($key->k_sayur == 2) {
+            echo 'Hidroponik';
+          } if ($key->k_sayur == 3) {
+            echo 'Bebas Pestisida';
+          } if ($key->k_sayur == 4)  {
+            echo 'Pertanian Lokal';
+          } if ($key->k_sayur == 5)  {
+            echo 'Import';
+          }
+           ?>
+							</td>
+						</tr>
+						<tr>
+							<td align="left">Sisa Stok : <?= $key->stock; ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 						<?php if ($key->stock  == 0) { 
       echo "<b>Stock Kosong</b>";
       ?>

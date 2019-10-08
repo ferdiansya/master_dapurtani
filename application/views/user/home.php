@@ -10,12 +10,30 @@
 				<div class="col-sm-12">
 					<table align="center">
 						<tr>
-							<td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?></td>
-							<td align="left">/ <?= $key->satuan; ?></td>
+							<td align="left">Rp. <?= number_format($key->harga, 0, ',', '.'); ?> / <?= $key->satuan; ?></td>
 						</tr>
 						<tr>
-							<td align="left">Sisa Stok : </td>
-							<td align="left"> <?= $key->stock; ?></td>
+							<td align="left"><?= $key->nama_petani; ?></td>
+						</tr>
+						<tr>
+							<td align="left">
+							<?php
+          if ($key->k_sayur == 1) {
+            echo 'Organik';
+          } if ($key->k_sayur == 2) {
+            echo 'Hidroponik';
+          } if ($key->k_sayur == 3) {
+            echo 'Bebas Pestisida';
+          } if ($key->k_sayur == 4)  {
+            echo 'Pertanian Lokal';
+          } if ($key->k_sayur == 5)  {
+            echo 'Import';
+          }
+           ?>
+							</td>
+						</tr>
+						<tr>
+							<td align="left">Sisa Stok : <?= $key->stock; ?></td>
 						</tr>
 					</table>
 				</div>

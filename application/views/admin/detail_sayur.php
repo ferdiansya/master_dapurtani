@@ -15,6 +15,10 @@
             <td>: <?= $nama_sayur; ?></td>
           </tr>
           <tr>
+            <td>Harga Petani</td>
+            <td>: <?= $n_petani; ?></td>
+          </tr>
+          <tr>
             <td>Harga Sayur</td>
             <td>: <?= 'Rp. '.number_format($harga, 0, ',','.'); ?></td>
           </tr>

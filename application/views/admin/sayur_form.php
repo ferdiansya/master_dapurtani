@@ -24,6 +24,27 @@
                       </div>
 
                       <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Nama Petani</label>
+                        <div class="col-md-7 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control col-md-7 col-xs-12" name="n_petani" value="<?= $n_petani; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Kelompok Sayur</label>
+                        <div class="col-md-4 col-sm-6">
+                          <select name="k_sayur" class="form-control">
+                            <option value="">--Pilih Kelompok Sayur--</option>
+                            <option value="1" <?php if($k_sayur == 1 ) {echo "selected";} ?>>Organik</option>
+                            <option value="2" <?php if($k_sayur == 2 ) {echo "selected";} ?>>Hidroponik</option>
+                            <option value="3" <?php if($k_sayur == 3 ) {echo "selected";} ?>>Bebas Pestisida</option>
+                            <option value="4" <?php if($k_sayur == 4 ) {echo "selected";} ?>>Pertanian Lokal</option>
+                            <option value="5" <?php if($k_sayur == 5 ) {echo "selected";} ?>>Import</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Gambar Sayur</label>
                         <div class="col-md-5 col-sm-6 col-xs-12">
                           <?php
@@ -33,7 +54,7 @@
                            }
                            ?>
                            <div class="clear-fix"></div>
-                           <br  />
+                       
                           <input type="file" class="form-control col-md-7 col-xs-12" name="foto">
                         </div>
                       </div>

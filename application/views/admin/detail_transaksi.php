@@ -11,6 +11,8 @@
               <th>No</th>
                <th>Nama Sayur</th>
                <th>Harga Sayur</th>
+               <th>Petani</th>
+               <th>Kelompok Sayur</th>
                <th>Jumlah</th>
                <th>Total</th>
 
@@ -27,18 +29,34 @@ $i = 1;
                 <td><?= $i++; ?></td>
                <td><?= $key->nama_sayur; ?></td>
                 <td><?= $key->biaya; ?></td>
+                <td><?= $key->petani; ?></td>
+                <td>
+                <?php
+          if ($key->kelompok == 1) {
+            echo 'Organik';
+          } if ($key->kelompok == 2) {
+            echo 'Hidroponik';
+          } if ($key->kelompok == 3) {
+            echo 'Bebas Pestisida';
+          } if ($key->kelompok == 4)  {
+            echo 'Pertanian Lokal';
+          } if ($key->kelompok == 5)  {
+            echo 'Import';
+          }
+           ?>
+                </td>
                <td><?= $key->qty; ?></td>
                <td><?= $key->biaya * $key->qty; ?></td>
 
             </tr>
             <?php endforeach; ?>
             <tr> </tr>
-              <td colspan="6">Total Harga Sayur :
+              <td colspan="8">Total Harga Sayur :
                <?= $key->sub; ?></td>
            <tr></tr>
-           <td colspan="6"> Ongkir : Rp 2.000</td>
+           <td colspan="8"> Ongkir : Rp 2.000</td>
            <tr></tr>
-           <td colspan="6"> Total Pembayaran <?= $key->total; ?></td>
+           <td colspan="8"> Total Pembayaran <?= $key->total; ?></td>
          </tbody>
 
       </table>

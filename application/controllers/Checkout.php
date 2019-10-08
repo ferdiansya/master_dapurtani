@@ -69,6 +69,8 @@ class Checkout extends CI_Controller {
 					'id_sayur' => $key['id'],
 					'nama_sayur' => $key['name'],
 					'qty' => $key['qty'],
+					'petani' => $key['n_petani'],
+					'kelompok' => $key['k_sayur'],
 					'biaya' => $key['price'],
 					'sub' => $sub,
 					'total' => $total

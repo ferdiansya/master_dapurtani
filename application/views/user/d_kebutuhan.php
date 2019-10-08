@@ -106,23 +106,19 @@
 
 
     <nav class="navbar fixed-bottom navbar-bottom sidebarNavigation" data-sidebarClass="navbar-light bg-light">
-      <div class="container">
-      <div class="nav navbar-nav navbar-left">
-          <p class="harga"><?php
-          if ($this->cart->total() > 0) {
-            echo 'Rp. '.number_format($this->cart->total(), 0, ',', '.');
-          } else {
-            echo 'Rp. 0';
-          }
-           ?>
-         </p>
-       </div>
+		<div class="container">
+			<div class="nav navbar-nav navbar-left">
+				<p class="harga harga-total">
+					<?= ($this->cart->total() > 0) ? 'Rp. '.number_format($this->cart->total(), 0, ',', '.') : 'Rp. 0'; ?>
+				</p>
+			</div>
 
-       <div class="garis-vertical"></div>
-       <div class="nav navbar-nav navbar-right box-keranjang">
-         <button class="btn btn-success keranjang-icon leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-           <img src="<?= base_url(); ?>assets/img/keranjang.png" alt="">&nbsp;&nbsp;<?php echo $this->cart->total_items(); ?>
-         </button>
+			<div class="garis-vertical"></div>
+
+			<div class="nav navbar-nav navbar-right box-keranjang">
+				<button class="btn btn-success keranjang-icon leftNavbarToggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+					Keranjang Belanja&nbsp;&nbsp;<?php echo $this->cart->total_items(); ?>
+				</button>
 
 
          <div class="collapse navbar-collapse">
@@ -442,7 +438,7 @@
              </div>
            </div>
            <?php if ($kebutuhan->stock  == 0) { 
-      echo "<b>Stock Kosong !</b>";
+      echo "<b>Stock Kosong</b>";
       ?>
        <?php } else { ?>
           <a class="btn btn-beli btn-success" href="<?= base_url(); ?>cart/kebutuhan/<?= $kebutuhan->id_d_kebutuhan; ?>">Masukkan ke Keranjang</a>
