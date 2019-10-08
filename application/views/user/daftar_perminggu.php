@@ -375,7 +375,7 @@
                 </a>
               </li>
               <li class="list-inline-item mr-3">
-                <a href="https://wa.me/6281244065453" target="_blank">
+                <a href="https://wa.me/6282343962420" target="_blank">
                   <i class="fab fa-whatsapp fa-2x fa-fw"></i>
                 </a>
               </li>

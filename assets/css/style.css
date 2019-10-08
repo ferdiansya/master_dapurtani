@@ -90,16 +90,15 @@ a:hover {
 	text-align: center;
 }
 
-.navbar-bottom .harga {
+.navbar-bottom .harga-total {
 	color: red;
 	margin-bottom: 0;
 	padding-left: 160px;
 }
 
 .navbar-bottom .keranjang-icon {
-	width: 80px;
 	height: 30px;
-	padding: 0 0 10px 0;
+	padding: 0 5px 0 5px;
 }
 
 .navbar-bottom .keranjang-icon {

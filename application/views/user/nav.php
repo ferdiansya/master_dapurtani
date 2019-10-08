@@ -24,13 +24,13 @@
         </li>
       <?php } if ($this->session->userdata('user_login')) { ?>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/index2"> Home</a>
+            <a class="nav-link" href="<?= base_url(); ?>home/index2"> Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#pengguna"> Cara Pemesanan</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="<?= base_url(); ?>home/transaksi">History</a>
+            <a class="nav-link" href="<?= base_url(); ?>home/transaksi">History</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url(); ?>home/hubungi"> Hubungi Kami</a>
