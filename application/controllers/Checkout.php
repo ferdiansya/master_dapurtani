@@ -116,7 +116,7 @@ class Checkout extends CI_Controller {
 			echo '<script type="text/javascript">alert("Silahkan cek email anda untuk detail pemesanan...");window.location.replace("'.base_url('home/index2').'")</script>';
 		}else
 		{
-			echo '<script type="text/javascript">alert("Pemesanan Berhasil");window.location.replace("'.base_url('home').'")</script>';
+			
 		}
 
 	}

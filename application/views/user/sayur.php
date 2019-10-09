@@ -159,7 +159,7 @@
 						</div>
 						<div class="col-4 col-sm-4 col-lg-4 col-xl-4 detail-sayur">
 							<h3 class="nama-sayur"><?= $key['name']; ?></h3>
-							<p class="harga-sayur">Rp. <?= number_format($key['price'], 0, ',', '.'); ?> / <sub>500 gram</sub></p>
+							<p class="harga-sayur">Rp. <?= number_format($key['price'], 0, ',', '.'); ?> / <sub><?= $key['weight']; ?></sub></p>
 
 							<button class="btn btn-primary icon-tambah" type="button" name="button" data-toggle="modal"
 								data-target="#modalUbah<?= $key['rowid']; ?>"><i class="fa fa-edit"></i></button>

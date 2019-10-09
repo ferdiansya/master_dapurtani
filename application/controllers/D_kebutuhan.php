@@ -23,8 +23,10 @@ public function add_d_kebutuhan()
   if ($this->input->post('submit', TRUE) == 'Submit') {
     //validasi
     $this->form_validation->set_rules('nama', 'Nama Barang', 'required|min_length[3]');
+    $this->form_validation->set_rules('umkm', 'Nama UMKM');
     $this->form_validation->set_rules('harga', 'Harga Barang', 'required|numeric');
     $this->form_validation->set_rules('satuan', 'Satuan Barang', 'required');
+    $this->form_validation->set_rules('jenis', 'Jenis Produk');
     $this->form_validation->set_rules('stock', 'Stock', 'required|numeric');
 
     if ($this->form_validation->run() == TRUE)
@@ -42,8 +44,10 @@ public function add_d_kebutuhan()
         //proses insert
         $kebutuhan = array(
           'nm_barang' => $this->input->post('nama', TRUE),
+          'nama' => $this->input->post('umkm', TRUE),
           'harga' => $this->input->post('harga', TRUE),
           'satuan' => $this->input->post('satuan', TRUE),
+          'jenis' => $this->input->post('jenis', TRUE),
           'stock' => $this->input->post('stock', TRUE),
           'gambar' => $gbr['file_name'],
         );
@@ -55,8 +59,10 @@ public function add_d_kebutuhan()
     redirect('d_kebutuhan/index');
   }
   $data['nama'] = $this->input->post('nama', TRUE);
+  $data['umkm'] = $this->input->post('umkm', TRUE);
   $data['satuan'] = $this->input->post('satuan', TRUE);
   $data['harga'] = $this->input->post('harga', TRUE);
+  $data['jenis'] = $this->input->post('jenis', TRUE);
   $data['stock'] = $this->input->post('stock', TRUE);
 
   $data['header'] = "Add Dapur Kebutuhan";
@@ -72,8 +78,10 @@ public function detail()
 
   foreach ($kebutuhan->result() as $key) {
     $data['nm_barang'] = $key->nm_barang;
+    $data['umkm'] = $key->nama;
     $data['harga'] = $key->harga;
     $data['satuan'] = $key->satuan;
+    $data['jenis'] = $key->jenis;
     $data['stock'] = $key->stock;
     $data['gambar'] = $key->gambar;
    }
@@ -88,8 +96,10 @@ public function update_d_kebutuhan()
   if ($this->input->post('submit', TRUE) == 'Submit') {
     //validasi
     $this->form_validation->set_rules('nama', 'Nama Barang', 'required|min_length[3]');
+    $this->form_validation->set_rules('umkm', 'Nama UMKM');
     $this->form_validation->set_rules('harga', 'Harga Barang', 'required|numeric');
     $this->form_validation->set_rules('satuan', 'Satuan Barang', 'required');
+    $this->form_validation->set_rules('jenis', 'Jenis Produk');
     $this->form_validation->set_rules('stock', 'Stock', 'required|numeric');
 
     if ($this->form_validation->run() == TRUE)
@@ -103,8 +113,10 @@ public function update_d_kebutuhan()
 
       $kebutuhan = array(
         'nm_barang' => $this->input->post('nama', TRUE),
+        'nama' => $this->input->post('umkm', TRUE),
         'harga' => $this->input->post('harga', TRUE),
         'satuan' => $this->input->post('satuan', TRUE),
+        'jenis' => $this->input->post('jenis', TRUE),
         'stock' => $this->input->post('stock', TRUE),
       );
 
@@ -127,8 +139,10 @@ public function update_d_kebutuhan()
 
   foreach($kebutuhan->result() as $key) {
   $data['nama'] = $key->nm_barang;
+  $data['umkm'] = $key->nama;
   $data['satuan'] = $key->satuan;
   $data['harga'] = $key->harga;
+  $data['jenis'] = $key->jenis;
   $data['stock'] = $key->stock;
   $data['gambar'] = $key->gambar;
 }

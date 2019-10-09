@@ -25,6 +25,8 @@ class Cart extends CI_Controller {
       $data = array(
         'id' => $get->id_d_kebutuhan,
         'name' => $get->nm_barang,
+        'n_petani' => $get->nama,
+        'k_sayur' => 0,
         'price' => $get->harga,
         'weight' => $get->satuan,
         'picture' => $get->gambar,

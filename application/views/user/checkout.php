@@ -227,8 +227,7 @@
               $i = 1;
                 foreach($this->cart->contents() as $key) :
                   ?>
-				  <input class="form-control" type="text" name="petani" value="<?= $key['n_petani'] ; ?>" readonly>
-							<input class="form-control" type="text" name="kelompok" value="<?= $key['k_sayur'] ; ?>" readonly>
+				
 						<tr>
 							<td><?= $i++; ?></td>
 							<td><?= $key['name']; ?></td>
